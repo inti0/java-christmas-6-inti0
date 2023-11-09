@@ -51,12 +51,10 @@ public class OrderReceiver {
                 .filter(food -> food.name.equals(inputName))
                 .findAny().orElseThrow(NoSuchElementException::new);
     }
-    public int orderSum(){
-        return orders.entrySet().stream()
-                .mapToInt(entry -> (entry.getKey().price) * (entry.getValue()))
-                .sum();
-    }
+
     public Map<Food, Integer> getOrders() {
         return orders;
     }
+
+
 }

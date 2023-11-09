@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class DiscountService {
+    private static final int NO_DISCOUNT = 0;
+    private static final int DISCOUNT_MIN_RANGE = 10000;
     private final Map<Food, Integer> orders;
     private final LocalDate localDate;
     private DiscountPolicy dayOfWeekDiscount;
@@ -22,11 +24,22 @@ public class DiscountService {
         specialDayDiscount = new SpecialDayDiscount(localDate);
     }
     public int discountAmount() {
+
+        if (orderSum() < DISCOUNT_MIN_RANGE) {
+            return NO_DISCOUNT;
+        }
+
         int sum = 0;
         sum += dayOfWeekDiscount.discountAmount();
         sum += dDayDiscount.discountAmount();
         sum += specialDayDiscount.discountAmount();
 
         return sum;
+    }
+
+    private int orderSum(){
+        return orders.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
