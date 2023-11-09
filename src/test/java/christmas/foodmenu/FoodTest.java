@@ -1,13 +1,13 @@
 package christmas.foodmenu;
 
-import christmas.order.Order;
+import christmas.order.OrderReceiver;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class FoodTest {
-    Order order = new Order(new HashMap<>());
+    OrderReceiver order = new OrderReceiver(new HashMap<>());
     @Test
     void 푸드_테스트() {
         String menuName = "양송이수프";

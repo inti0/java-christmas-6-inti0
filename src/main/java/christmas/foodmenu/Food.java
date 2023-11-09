@@ -10,9 +10,9 @@ public enum Food {
     CHRISTMAS_PASTA("크리스마스파스타", 25_000, FoodType.MAIN),
     CHOCO_CAKE("초코케이크", 15_000, FoodType.DESSERT),
     ICE_CREAM("아이스크림", 5_000, FoodType.DESSERT),
-    RED_WINE("제로콜라", 3_000, FoodType.DRINK),
-    CHAMPAGNE("레드와인", 60_000, FoodType.DRINK),
-    ZERO_COLA("샴페인",25_000, FoodType.DRINK);
+    ZERO_COLA("제로콜라", 3_000, FoodType.DRINK),
+    RED_WINE("레드와인", 60_000, FoodType.DRINK),
+    CHAMPAGNE("샴페인",25_000, FoodType.DRINK);
     public String name;
     public int price;
     public FoodType foodType;

@@ -8,11 +8,10 @@ import java.util.Map;
 public class DayOfWeekDiscount {
     private static final int DAY_DISCOUNT = 2023;
     private final Map<Food, Integer> orders;
-
     public DayOfWeekDiscount(Map<Food, Integer> orders) {
         this.orders = orders;
     }
-    public int DayDiscountPrice(DayOfWeek dayOfWeek){
+    public int dayDiscountPrice(DayOfWeek dayOfWeek){
         int amount = orders.keySet().stream()
                 .filter(key -> isDayDiscountFood(key, dayOfWeek))
                 .map(key -> orders.getOrDefault(key, 0))
