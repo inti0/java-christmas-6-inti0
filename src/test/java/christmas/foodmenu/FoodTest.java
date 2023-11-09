@@ -1,16 +1,17 @@
 package christmas.foodmenu;
 
-import christmas.service.OrderService;
+import christmas.order.Order;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class FoodTest {
-    OrderService orderService = new OrderService();
+    Order order = new Order(new HashMap<>());
     @Test
     void 푸드_테스트() {
         String menuName = "양송이수프";
-        Food food = orderService.findMenuBy(menuName);
+        Food food = order.findMenuBy(menuName);
         Assertions.assertThat(food).isNotNull();
     }
 
@@ -18,7 +19,7 @@ public class FoodTest {
     void 푸드메뉴_실패테스트() {
         String menuName = "콜라";
         Assertions.assertThatThrownBy(()->
-                orderService.findMenuBy(menuName))
+                order.findMenuBy(menuName))
                 .isInstanceOf(NoSuchElementException.class);
     }
 }
