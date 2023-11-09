@@ -38,8 +38,8 @@ public class DiscountService {
     }
 
     private int orderSum(){
-        return orders.values().stream()
-                .mapToInt(Integer::intValue)
+        return orders.entrySet().stream()
+                .mapToInt(entry -> (entry.getKey().price) * (entry.getValue()))
                 .sum();
     }
 }

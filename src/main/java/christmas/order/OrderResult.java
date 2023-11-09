@@ -39,7 +39,7 @@ public class OrderResult {
         discountSum = discountService.discountAmount();
     }
 
-    private int orderOriginalSum(){
+    public int orderOriginalSum(){
         return orders.entrySet().stream()
                 .mapToInt(entry -> (entry.getKey().price) * (entry.getValue()))
                 .sum();
