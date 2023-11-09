@@ -1,4 +1,4 @@
-package christmas.discount.datediscount;
+package christmas.benefit.datediscount;
 
 import java.time.LocalDate;
 

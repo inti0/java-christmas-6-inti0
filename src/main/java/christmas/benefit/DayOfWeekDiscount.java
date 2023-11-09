@@ -1,17 +1,23 @@
-package christmas.discount;
+package christmas.benefit;
 
 import christmas.foodmenu.Food;
 import christmas.foodmenu.FoodType;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.Map;
 
 public class DayOfWeekDiscount {
     private static final int DAY_DISCOUNT = 2023;
     private final Map<Food, Integer> orders;
-    public DayOfWeekDiscount(Map<Food, Integer> orders) {
+    private final LocalDate localDate;
+
+    public DayOfWeekDiscount(Map<Food, Integer> orders, LocalDate localDate) {
         this.orders = orders;
+        this.localDate = localDate;
     }
-    public int dayDiscountPrice(DayOfWeek dayOfWeek){
+
+    public int dayDiscountPrice(){
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
         int amount = orders.keySet().stream()
                 .filter(key -> isDayDiscountFood(key, dayOfWeek))
                 .map(key -> orders.getOrDefault(key, 0))

@@ -61,6 +61,7 @@ class OrderReceiverTest {
     void 주문테스트6() {
         assertThatThrownBy(() ->{
             receiver.orderFood("티본스테이크", 4);
+            receiver.orderFood("레드와인", 4);
             receiver.orderFood("티본스테이크", 3);
         }).isInstanceOf(IllegalArgumentException.class);
     }
