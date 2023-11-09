@@ -1,4 +1,4 @@
-package christmas.benefit.datediscount;
+package christmas.benefit.discount;
 
 import java.time.LocalDate;
 import org.assertj.core.api.Assertions;

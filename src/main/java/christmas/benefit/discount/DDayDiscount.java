@@ -1,8 +1,8 @@
-package christmas.benefit.datediscount;
+package christmas.benefit.discount;
 
 import java.time.LocalDate;
 
-public class DDayDiscount {
+public class DDayDiscount implements DiscountPolicy {
     private static final int CHRISTMAS_DAY = 25;
     private static final int DISCOUNT_PRICE_PER_DAY = 100;
     private static final int DISCOUNT_PRICE_DEFAULT = 900;

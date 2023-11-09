@@ -2,6 +2,7 @@ package christmas.benefit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.benefit.discount.DayOfWeekDiscount;
 import christmas.foodmenu.Food;
 import christmas.order.OrderReceiver;
 import java.time.DayOfWeek;
@@ -13,7 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class DayOfWeekDiscountTest {
 
@@ -38,7 +38,7 @@ public class DayOfWeekDiscountTest {
         DayOfWeek day = DayOfWeek.from(dayOfWeek);
         LocalDate weekend = localDate.with(day);
         DayOfWeekDiscount dayOfWeekDiscount = new DayOfWeekDiscount(orders, weekend);
-        int discount = dayOfWeekDiscount.dayDiscountPrice();
+        int discount = dayOfWeekDiscount.discountAmount();
 
         assertThat(discount).isEqualTo(2023 * 2);
     }
@@ -56,7 +56,7 @@ public class DayOfWeekDiscountTest {
         DayOfWeek day = DayOfWeek.from(dayOfWeek);
         LocalDate weekday = localDate.with(day);
         DayOfWeekDiscount dayOfWeekDiscount = new DayOfWeekDiscount(orders, weekday);
-        int discount = dayOfWeekDiscount.dayDiscountPrice();
+        int discount = dayOfWeekDiscount.discountAmount();
 
         assertThat(discount).isEqualTo(2023 * 3);
     }
@@ -72,7 +72,7 @@ public class DayOfWeekDiscountTest {
         DayOfWeek day = DayOfWeek.from(DayOfWeek.MONDAY);
         LocalDate weekday = localDate.with(day);
         DayOfWeekDiscount dayOfWeekDiscount = new DayOfWeekDiscount(orders, weekday);
-        int discount = dayOfWeekDiscount.dayDiscountPrice();
+        int discount = dayOfWeekDiscount.discountAmount();
 
         assertThat(discount).isEqualTo(2 * 2023);
     }
