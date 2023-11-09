@@ -6,9 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class FoodTest {
-
     OrderService orderService = new OrderService();
-
     @Test
     void 푸드_테스트() {
         String menuName = "양송이수프";
