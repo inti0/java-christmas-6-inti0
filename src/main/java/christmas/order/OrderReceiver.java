@@ -1,6 +1,7 @@
 package christmas.order;
 
 import christmas.foodmenu.Food;
+import christmas.foodmenu.FoodType;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -56,5 +57,8 @@ public class OrderReceiver {
         return orders;
     }
 
-
+    public boolean hasCustomerOrderedOnlyDrink(){
+        return orders.keySet().stream()
+                .allMatch(food -> food.foodType.equals(FoodType.DRINK));
+    }
 }
