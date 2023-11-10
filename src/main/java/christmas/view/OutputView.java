@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.EventBadge;
 import christmas.benefit.Present;
 import christmas.model.OrderResult;
 import java.util.stream.Collectors;
@@ -28,10 +29,11 @@ public class OutputView {
         System.out.println(toStringAllOfBenefitList());
         System.out.println(toStringAllOfBenefitAmount());
         System.out.println(toStringPaymentAfterDiscount());
+        System.out.println(toStringEventBadge());
     }
 
     public String toStringOrders() {
-        System.out.println("주문 메뉴");
+        System.out.println("<주문 메뉴>");
         return result.getOrders().entrySet().stream()
                 .map(entry -> ORDER_FORMAT.formatted(entry.getKey().name, entry.getValue()))
                 .collect(Collectors.joining(NEXT_LINE));
@@ -83,6 +85,12 @@ public class OutputView {
     public String toStringPaymentAfterDiscount(){
         System.out.println("<할인 후 예상 결제 금액>");
         return PAYMENT_FORMAT.formatted(result.paymentAfterDiscount());
+    }
+
+    public String toStringEventBadge(){
+        System.out.println("<12월 이벤트 배지>");
+        EventBadge eventBadge = result.giveEventBadge();
+        return eventBadge.item;
     }
 }
 

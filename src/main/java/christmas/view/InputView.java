@@ -21,7 +21,7 @@ public class InputView {
             try {
                 return parseDate();
             } catch (IllegalArgumentException exception) {
-                System.out.println("[ERROR]");
+                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -42,7 +42,7 @@ public class InputView {
                 String orderLine = Console.readLine();
                 String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
                 return createValidOrder(strings);
-            } catch (NoSuchElementException exception){
+            } catch (ArrayIndexOutOfBoundsException exception) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             } catch (IllegalArgumentException exception) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");

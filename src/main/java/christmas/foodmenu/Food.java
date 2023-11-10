@@ -27,6 +27,6 @@ public enum Food {
     static public Food findMenuBy(String inputName){
         return Arrays.stream(Food.values())
                 .filter(food -> food.name.equals(inputName))
-                .findAny().orElseThrow(NoSuchElementException::new);
+                .findAny().orElseThrow(IllegalArgumentException::new);
     }
 }
