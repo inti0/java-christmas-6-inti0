@@ -7,7 +7,7 @@ import christmas.benefit.discount.DiscountPolicy;
 import christmas.benefit.discount.DiscountPolicyFactory;
 import christmas.foodmenu.Food;
 import christmas.order.OrderReceiver;
-import christmas.service.OrderResult;
+import christmas.model.OrderResult;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;

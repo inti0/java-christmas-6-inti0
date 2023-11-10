@@ -47,12 +47,11 @@ public class OrderReceiver {
             throw new IllegalArgumentException();
         }
     }
-    public Map<Food, Integer> getOrders() {
-        return orders;
-    }
-
     public boolean hasCustomerOrderedOnlyDrink(){
         return orders.keySet().stream()
                 .allMatch(food -> food.foodType.equals(FoodType.DRINK));
+    }
+    public Map<Food, Integer> getOrders() {
+        return orders;
     }
 }

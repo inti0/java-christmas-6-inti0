@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.model;
 
 import christmas.EventBadge;
 import christmas.benefit.Present;
@@ -58,6 +58,14 @@ public class OrderResult {
         return beforeDiscountSum() - allOfDiscount();
     }
     public int allOfBenefitAmount() {
-        return givePresent().price + allOfDiscount();
+        return givePresent().getPrice() + allOfDiscount();
+    }
+
+    public Map<Food, Integer> getOrders() {
+        return orders;
+    }
+
+    public List<DiscountPolicy> getDiscountPolicies() {
+        return discountPolicies;
     }
 }

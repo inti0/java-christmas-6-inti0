@@ -4,9 +4,9 @@ public enum Present {
 
     CHAMPAGNE(120_000, 25_000,"샴페인"),
     NOTHING(0,0,"없음");
-    public int condition;
-    public int price;
-    String item;
+    private final int condition;
+    private final int price;
+    private final String item;
 
     private Present(int condition, int price, String item) {
         this.condition = condition;
@@ -19,5 +19,17 @@ public enum Present {
             return Present.CHAMPAGNE;
         }
         return Present.NOTHING;
+    }
+
+    public int getCondition() {
+        return condition;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getItem() {
+        return item;
     }
 }

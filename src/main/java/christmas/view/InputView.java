@@ -17,17 +17,17 @@ public class InputView {
 
     public int readDate() {
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
-        String input = Console.readLine();
         while (true) {
             try {
-                return parseDate(input);
+                return parseDate();
             } catch (IllegalArgumentException exception) {
-                System.out.println("에러메시지");
+                System.out.println("[ERROR]");
             }
         }
     }
 
-    private int parseDate(String input) {
+    private int parseDate() {
+        String input = Console.readLine();
         int date = Integer.parseInt(input);
         if(date > LAST_DATE || date < FIRST_DATE) {
             throw new IllegalArgumentException();
@@ -43,9 +43,9 @@ public class InputView {
                 String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
                 return createValidOrder(strings);
             } catch (NoSuchElementException exception){
-                System.out.println("에러메시지");
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             } catch (IllegalArgumentException exception) {
-                System.out.println("에러메시지");
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
