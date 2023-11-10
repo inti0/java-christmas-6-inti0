@@ -82,7 +82,7 @@ class OrderReceiverTest {
         assertThat(onlyDrink).isEqualTo(true);
     }
 
-    @DisplayName("음료만 주문했는지 확인할 수 있다. 음료 말고도 없다면 false")
+    @DisplayName("음료만 주문했는지 확인할 수 있다. 음료 말고도 있다면 false")
     @Test
     void 음료_테스트2(){
         receiver.orderFood("티본스테이크",5);
