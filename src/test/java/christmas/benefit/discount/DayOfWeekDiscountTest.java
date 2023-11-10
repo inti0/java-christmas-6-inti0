@@ -1,4 +1,4 @@
-package christmas.benefit;
+package christmas.benefit.discount;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

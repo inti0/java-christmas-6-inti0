@@ -23,12 +23,12 @@ public class OrderController {
         int date = inputView.readDate();
         LocalDate bookDate = LocalDate.of(THIS_YEAR, Month.DECEMBER, date);
         OrderReceiver orderReceiver = inputView.readOrder();
-        Map<Food, Integer> orders = orderReceiver.getOrders();
 
+        Map<Food, Integer> orders = orderReceiver.getOrders();
         DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(orders, bookDate);
         List<DiscountPolicy> discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
-        
+
     }
 
     /**

@@ -3,35 +3,43 @@ package christmas;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.benefit.Present;
+import christmas.benefit.discount.DiscountPolicy;
+import christmas.benefit.discount.DiscountPolicyFactory;
 import christmas.foodmenu.Food;
 import christmas.order.OrderReceiver;
 import christmas.service.OrderResult;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class DomainLogicTest {
+public class OrderResultTest {
 
     LocalDate localDate;
     Map<Food,Integer> orders;
     OrderReceiver receiver;
     OrderResult orderResult;
+    DiscountPolicyFactory discountPolicyFactory;
 
+    List<DiscountPolicy> discountPolicies;
     @BeforeEach
     void 생성자주입(){
         //given
         localDate = LocalDate.of(2023,12, 15);
         orders = new HashMap<>();
         receiver = new OrderReceiver(orders);
+        discountPolicyFactory = new DiscountPolicyFactory(orders, localDate);
+        discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
         receiver.orderFood("시저샐러드", 3);
         receiver.orderFood("해산물파스타", 4);
         receiver.orderFood("아이스크림", 10);
         receiver.orderFood("샴페인", 3);
 
-        orderResult = new OrderResult(orders, localDate);
+        orderResult = new OrderResult(orders, discountPolicies);
     }
 
     /**
@@ -41,18 +49,38 @@ public class DomainLogicTest {
      *     CHAMPAGNE("샴페인",25_000, FoodType.DRINK);
      */
     @Test
-    void 도메인로직_테스트_할인전(){
-        int orderOriginalSum = orderResult.orderOriginalSum();
+    void 할인전_금액_테스트(){
+        int orderOriginalSum = orderResult.beforeDiscountSum();
 
         assertThat(orderOriginalSum).isEqualTo(8000 * 3 + 35000 * 4 + 5000 * 10 + 25000 * 3);
     }
     @Test
-    void 도메인로직_테스트_증정품(){
+    void 할인_금액_테스트(){
+        int discount = orderResult.allOfDiscount();
+
+        int dDay = 1000 + 1400;
+        int specialDay = 0;
+        int dayDiscount = 4 * 2023;
+
+        assertThat(discount).isEqualTo(dDay + specialDay + dayDiscount);
+    }
+
+    @Test
+    @DisplayName("결제액이 10000원 이하라면, 할인은 적용되지 않는다.")
+    void 할인_적용_테스트(){
+        orders.clear();
+        receiver.orderFood("아이스크림", 1);
+        int discount = orderResult.allOfDiscount();
+
+        assertThat(discount).isEqualTo(0);
+    }
+    @Test
+    void 증정품_테스트(){
         Present present = orderResult.givePresent();
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
     }
     @Test
-    void 도메인로직_테스트_총혜택액(){
+    void 총혜택액_테스트(){
         int benefit = orderResult.allOfBenefitAmount();
         int dDay = 1000 + 1400;
         int specialDay = 0;
@@ -62,13 +90,13 @@ public class DomainLogicTest {
         assertThat(benefit).isEqualTo(dDay + specialDay + dayDiscount + present);
     }
     @Test
-    void 도메인로직_테스트_뱃지지급(){
+    void 뱃지지급_테스트(){
         EventBadge eventBadge = orderResult.giveEventBadge();
         assertThat(eventBadge).isEqualTo(EventBadge.TREE);
     }
     @Test
-    void 도메인로직_테스트_할인후금액(){
-        int totalAmountAfterDiscount = orderResult.totalPaymentAfterDiscount();
-        assertThat(8000 * 3 + 35000 * 4 + 5000 * 10 + 25000 * 3 - (2400 + 20230));
+    void 할인후금액_테스트(){
+        int afterDiscount = orderResult.paymentAfterDiscount();
+        assertThat(8000 * 3 + 35000 * 4 + 5000 * 10 + 25000 * 3 - (2400 + 4 * 2023)).isEqualTo(afterDiscount);
     }
 }
