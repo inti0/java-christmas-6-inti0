@@ -11,7 +11,7 @@ public class FoodTest {
     @Test
     void 푸드_테스트() {
         String menuName = "양송이수프";
-        Food food = order.findMenuBy(menuName);
+        Food food = Food.findMenuBy(menuName);
         Assertions.assertThat(food).isNotNull();
     }
 
@@ -19,7 +19,7 @@ public class FoodTest {
     void 푸드메뉴_실패테스트() {
         String menuName = "콜라";
         Assertions.assertThatThrownBy(()->
-                order.findMenuBy(menuName))
+                Food.findMenuBy(menuName))
                 .isInstanceOf(NoSuchElementException.class);
     }
 }

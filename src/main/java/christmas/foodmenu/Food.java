@@ -1,5 +1,8 @@
 package christmas.foodmenu;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 public enum Food {
     BUTTON_MUSHROOM_SOUP("양송이수프", 6_000, FoodType.APPETIZER),
     TAPAS("타파스", 5_500, FoodType.APPETIZER),
@@ -20,5 +23,10 @@ public enum Food {
         this.name = name;
         this.price = price;
         this.foodType = foodType;
+    }
+    static public Food findMenuBy(String inputName){
+        return Arrays.stream(Food.values())
+                .filter(food -> food.name.equals(inputName))
+                .findAny().orElseThrow(NoSuchElementException::new);
     }
 }

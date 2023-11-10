@@ -16,7 +16,7 @@ public class OrderReceiver {
     }
 
     public void orderFood(String inputName, int amount) {
-        Food menu = findMenuBy(inputName);
+        Food menu = Food.findMenuBy(inputName);
         throwExceptionIfAlreadyOrdered(menu);
         validateOrder(amount);
         orders.put(menu, amount);
@@ -47,12 +47,6 @@ public class OrderReceiver {
             throw new IllegalArgumentException();
         }
     }
-    public Food findMenuBy(String inputName){
-        return Arrays.stream(Food.values())
-                .filter(food -> food.name.equals(inputName))
-                .findAny().orElseThrow(NoSuchElementException::new);
-    }
-
     public Map<Food, Integer> getOrders() {
         return orders;
     }
