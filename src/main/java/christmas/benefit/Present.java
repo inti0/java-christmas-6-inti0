@@ -8,7 +8,7 @@ public enum Present {
     public int price;
     String item;
 
-    Present(int condition, int price, String item) {
+    private Present(int condition, int price, String item) {
         this.condition = condition;
         this.price = price;
         this.item = item;

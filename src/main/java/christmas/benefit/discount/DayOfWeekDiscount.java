@@ -40,4 +40,9 @@ public class DayOfWeekDiscount implements DiscountPolicy {
     private boolean isWeekend(DayOfWeek bookDay) {
         return DayOfWeek.FRIDAY == bookDay || DayOfWeek.SATURDAY == bookDay;
     }
+
+    @Override
+    public String discountSource() {
+        return "요일 할인";
+    }
 }

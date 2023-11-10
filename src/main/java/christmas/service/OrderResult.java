@@ -1,4 +1,4 @@
-package christmas.order;
+package christmas.service;
 
 import christmas.EventBadge;
 import christmas.benefit.Present;
@@ -53,7 +53,7 @@ public class OrderResult {
         return EventBadge.selectEventBadge(discountSum);
     }
 
-    public int totalAmountAfterDiscount() {
+    public int totalPaymentAfterDiscount() {
         return originalSum - discountSum;
     }
 

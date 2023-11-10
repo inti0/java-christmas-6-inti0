@@ -5,12 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import christmas.benefit.Present;
 import christmas.foodmenu.Food;
 import christmas.order.OrderReceiver;
-import christmas.order.OrderResult;
-import christmas.service.DiscountService;
+import christmas.service.OrderResult;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,7 +68,7 @@ public class DomainLogicTest {
     }
     @Test
     void 도메인로직_테스트_할인후금액(){
-        int totalAmountAfterDiscount = orderResult.totalAmountAfterDiscount();
+        int totalAmountAfterDiscount = orderResult.totalPaymentAfterDiscount();
         assertThat(8000 * 3 + 35000 * 4 + 5000 * 10 + 25000 * 3 - (2400 + 20230));
     }
 }

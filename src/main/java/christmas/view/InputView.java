@@ -41,7 +41,7 @@ public class InputView {
             try {
                 String orderLine = Console.readLine();
                 String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
-                return validateOrder(strings);
+                return createValidOrder(strings);
             } catch (NoSuchElementException exception){
                 System.out.println("에러메시지");
             } catch (IllegalArgumentException exception) {
@@ -50,7 +50,7 @@ public class InputView {
         }
     }
 
-    private OrderReceiver validateOrder(String[] strings) {
+    private OrderReceiver createValidOrder(String[] strings) {
         OrderReceiver orderReceiver = new OrderReceiver(new HashMap<>());
 
         for (String menuAndAmount : strings) {

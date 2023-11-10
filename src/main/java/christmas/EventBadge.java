@@ -11,7 +11,7 @@ public enum EventBadge {
     public String item;
     public int condition;
 
-    EventBadge(String item, int condition) {
+    private EventBadge(String item, int condition) {
         this.item = item;
         this.condition = condition;
     }

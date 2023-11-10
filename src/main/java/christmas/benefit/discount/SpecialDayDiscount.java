@@ -23,4 +23,9 @@ public class SpecialDayDiscount implements DiscountPolicy {
         int dayOfMonth = localDate.getDayOfMonth();
         return dayOfWeek.equals(DayOfWeek.SUNDAY) || dayOfMonth == CHRISTMAS_DATE;
     }
+
+    @Override
+    public String discountSource() {
+        return "스페셜 할인";
+    }
 }
