@@ -2,9 +2,7 @@ package christmas.order;
 
 import christmas.foodmenu.Food;
 import christmas.foodmenu.FoodType;
-import java.util.Arrays;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 public class OrderReceiver {
     private static final int ORDER_AMOUNT_UNIT_MIN = 1;
@@ -16,7 +14,7 @@ public class OrderReceiver {
     }
 
     public void orderFood(String inputName, int amount) {
-        Food menu = Food.findMenuBy(inputName);
+        Food menu = Food.findMenuByName(inputName);
         throwExceptionIfAlreadyOrdered(menu);
         validateOrder(amount);
         orders.put(menu, amount);
@@ -49,7 +47,7 @@ public class OrderReceiver {
     }
     public boolean hasCustomerOrderedOnlyDrink(){
         return orders.keySet().stream()
-                .allMatch(food -> food.foodType.equals(FoodType.DRINK));
+                .allMatch(food -> food.getFoodType().equals(FoodType.DRINK));
     }
     public Map<Food, Integer> getOrders() {
         return orders;

@@ -30,7 +30,7 @@ public class DayOfWeekDiscount implements DiscountPolicy {
         if(food.getFoodType().equals(FoodType.MAIN)){
             return isWeekend(bookDay);
         }
-        
+
         if(food.getFoodType().equals(FoodType.DESSERT)){
             return !isWeekend(bookDay);
         }

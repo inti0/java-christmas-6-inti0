@@ -1,7 +1,5 @@
 package christmas;
 
-import christmas.benefit.Present;
-
 public enum EventBadge {
     SANTA("산타", 20_000),
     STAR("별", 5_000),

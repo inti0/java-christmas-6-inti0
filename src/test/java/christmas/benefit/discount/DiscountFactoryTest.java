@@ -10,15 +10,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class DiscountServiceTest {
+public class DiscountFactoryTest {
 
     Map<Food, Integer> orders;
     OrderReceiver receiver;
     LocalDate localDate;
     DiscountPolicyFactory discountPolicyFactory;
     List<DiscountPolicy> discountPolicies;
-
-
 
     @BeforeEach
     void 생성자주입() {
@@ -33,7 +31,6 @@ public class DiscountServiceTest {
         receiver.orderFood("아이스크림", 5);
         receiver.orderFood("샴페인", 6);
     }
-
     @Test
     void 할인정책_종합_테스트() {
         int discountAmount = discountPolicies.stream()

@@ -18,11 +18,11 @@ public class DDayDiscountTest {
         DDayDiscount dDayDiscount1 = new DDayDiscount(localDate1);
         DDayDiscount dDayDiscount2 = new DDayDiscount(localDate2);
 
-        int dc1 = dDayDiscount1.discountAmount();
-        int dc2 = dDayDiscount2.discountAmount();
+        int discount1 = dDayDiscount1.discountAmount();
+        int discount2 = dDayDiscount2.discountAmount();
 
-        Assertions.assertThat(dc1).isEqualTo(1000);
-        Assertions.assertThat(dc2).isEqualTo(3400);
+        Assertions.assertThat(discount1).isEqualTo(1000);
+        Assertions.assertThat(discount2).isEqualTo(3400);
     }
 
     @Test
@@ -33,10 +33,10 @@ public class DDayDiscountTest {
         DDayDiscount dDayDiscount1 = new DDayDiscount(localDate1);
         DDayDiscount dDayDiscount2 = new DDayDiscount(localDate2);
 
-        int dc1 = dDayDiscount1.discountAmount();
-        int dc2 = dDayDiscount2.discountAmount();
+        int discount1 = dDayDiscount1.discountAmount();
+        int discount2 = dDayDiscount2.discountAmount();
 
-        Assertions.assertThat(dc1).isEqualTo(0);
-        Assertions.assertThat(dc2).isEqualTo(0);
+        Assertions.assertThat(discount1).isEqualTo(0);
+        Assertions.assertThat(discount2).isEqualTo(0);
     }
 }

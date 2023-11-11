@@ -21,10 +21,6 @@ public enum Present {
         return Present.NOTHING;
     }
 
-    public int getCondition() {
-        return condition;
-    }
-
     public int getPrice() {
         return price;
     }

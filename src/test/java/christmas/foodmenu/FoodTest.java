@@ -2,7 +2,6 @@ package christmas.foodmenu;
 
 import christmas.order.OrderReceiver;
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ public class FoodTest {
     @Test
     void 푸드_테스트() {
         String menuName = "양송이수프";
-        Food food = Food.findMenuBy(menuName);
+        Food food = Food.findMenuByName(menuName);
         Assertions.assertThat(food).isNotNull();
     }
 
@@ -19,7 +18,7 @@ public class FoodTest {
     void 푸드메뉴_실패테스트() {
         String menuName = "콜라";
         Assertions.assertThatThrownBy(()->
-                Food.findMenuBy(menuName))
+                Food.findMenuByName(menuName))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

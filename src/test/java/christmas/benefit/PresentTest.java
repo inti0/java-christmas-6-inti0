@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PresentTest {
-
     @Test
     void selectPresent() {
         Present present1 = Present.selectPresent(119000);
