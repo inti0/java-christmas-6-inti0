@@ -11,7 +11,7 @@ public class SpecialDayDiscountTest {
     LocalDate localDate2;
 
     @Test
-    @DisplayName("일요일과 크리스마스에 1000원 할인된다.")
+    @DisplayName("스페셜 데이(일요일과 크리스마스)에 1000원 할인된다.")
     void 스페셜_데이_할인(){
         localDate1 = LocalDate.of(2023, 12, 10);
         localDate2 = LocalDate.of(2023,12,25);
@@ -26,7 +26,7 @@ public class SpecialDayDiscountTest {
     }
 
     @Test
-    @DisplayName("일요일과 크리스마스를 제외하고는 할인되지 않는다.")
+    @DisplayName("스페셜 데이를 제외하고는 할인되지 않는다.")
     void 스페셜_데이_할인2(){
         localDate1 = LocalDate.of(2023, 12, 11);
         localDate2 = LocalDate.of(2023,12,1);

@@ -1,7 +1,9 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.foodmenu.Food;
 import christmas.order.OrderReceiver;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
@@ -50,7 +52,7 @@ public class InputView {
     }
 
     private OrderReceiver createValidOrder(String[] strings) {
-        OrderReceiver orderReceiver = new OrderReceiver(new HashMap<>());
+        OrderReceiver orderReceiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
 
         for (String menuAndAmount : strings) {
             String[] split = menuAndAmount.split(ORDER_DELIMITER, ORDER_SIZE);

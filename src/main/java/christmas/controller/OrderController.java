@@ -14,20 +14,32 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderController {
-    InputView inputView = AppConfig.inputView();
+    private final InputView inputView;
+    private OrderResult orderResult;
+    private OutputView outputView;
+
+    public OrderController(InputView inputView) {
+        this.inputView = inputView;
+    }
 
     public void run() {
+        book();
+        printBill();
+    }
+    private void book() {
         int date = inputView.readDate();
-        LocalDate bookDate = LocalDate.of(AppConfig.THIS_YEAR, Month.DECEMBER, date);
         OrderReceiver orderReceiver = inputView.readOrder();
-
+        LocalDate bookDate = LocalDate.of(AppConfig.THIS_YEAR, Month.DECEMBER, date);
         Map<Food, Integer> orders = orderReceiver.getOrders();
+
         DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(orders, bookDate);
         List<DiscountPolicy> discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
-        OrderResult orderResult = new OrderResult(orders, discountPolicies);
-        OutputView outputView = new OutputView(orderResult);
+        orderResult = new OrderResult(orders, discountPolicies);
+    }
 
+    private void printBill() {
+        outputView = new OutputView(orderResult);
         outputView.print();
     }
 }
