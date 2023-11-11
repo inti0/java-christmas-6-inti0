@@ -2,8 +2,7 @@ package christmas.benefit.discount;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.benefit.discount.DayOfWeekDiscount;
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import christmas.order.OrderReceiver;
 import java.time.DayOfWeek;
 import java.time.LocalDate;

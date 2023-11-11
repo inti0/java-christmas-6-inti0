@@ -1,6 +1,6 @@
 package christmas.benefit.discount;
 
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import christmas.order.OrderReceiver;
 import java.time.LocalDate;
 import java.util.HashMap;

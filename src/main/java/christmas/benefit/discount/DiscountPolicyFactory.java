@@ -1,6 +1,6 @@
 package christmas.benefit.discount;
 
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;

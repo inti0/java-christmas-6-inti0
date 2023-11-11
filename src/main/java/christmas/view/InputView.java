@@ -1,11 +1,9 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import christmas.order.OrderReceiver;
 import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
 
 public class InputView {
 
@@ -57,8 +55,8 @@ public class InputView {
         for (String menuAndAmount : strings) {
             String[] split = menuAndAmount.split(ORDER_DELIMITER, ORDER_SIZE);
             validateLength(split);
-            String menu = split[0];
-            int amount = Integer.parseInt(split[1]);
+            String menu = split[0].trim();
+            int amount = Integer.parseInt(split[1].trim());
 
             orderReceiver.orderFood(menu, amount);
         }

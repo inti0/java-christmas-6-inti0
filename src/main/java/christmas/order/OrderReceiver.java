@@ -1,7 +1,5 @@
 package christmas.order;
 
-import christmas.foodmenu.Food;
-import christmas.foodmenu.FoodType;
 import java.util.Map;
 
 public class OrderReceiver {
@@ -41,6 +39,7 @@ public class OrderReceiver {
         int total = orders.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+
         if (total + amount > ORDER_AMOUNT_SUM_MAX) {
             throw new IllegalArgumentException();
         }

@@ -1,11 +1,12 @@
-package christmas;
+package christmas.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.EventBadge;
 import christmas.benefit.Present;
 import christmas.benefit.discount.DiscountPolicy;
 import christmas.benefit.discount.DiscountPolicyFactory;
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import christmas.order.OrderReceiver;
 import christmas.model.OrderResult;
 import java.time.LocalDate;

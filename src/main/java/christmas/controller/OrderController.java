@@ -3,7 +3,7 @@ package christmas.controller;
 import christmas.AppConfig;
 import christmas.benefit.discount.DiscountPolicy;
 import christmas.benefit.discount.DiscountPolicyFactory;
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import christmas.model.OrderResult;
 import christmas.order.OrderReceiver;
 import christmas.view.InputView;

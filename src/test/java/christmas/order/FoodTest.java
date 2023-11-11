@@ -1,5 +1,6 @@
-package christmas.foodmenu;
+package christmas.order;
 
+import christmas.order.Food;
 import christmas.order.OrderReceiver;
 import java.util.EnumMap;
 import org.assertj.core.api.Assertions;

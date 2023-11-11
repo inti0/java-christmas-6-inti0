@@ -1,4 +1,4 @@
-package christmas.foodmenu;
+package christmas.order;
 
 import java.util.Arrays;
 

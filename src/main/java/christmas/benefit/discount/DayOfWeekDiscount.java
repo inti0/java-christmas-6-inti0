@@ -1,8 +1,7 @@
 package christmas.benefit.discount;
 
-import christmas.AppConfig;
-import christmas.foodmenu.Food;
-import christmas.foodmenu.FoodType;
+import christmas.order.Food;
+import christmas.order.FoodType;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Map;

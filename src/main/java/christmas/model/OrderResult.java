@@ -3,7 +3,7 @@ package christmas.model;
 import christmas.EventBadge;
 import christmas.benefit.Present;
 import christmas.benefit.discount.DiscountPolicy;
-import christmas.foodmenu.Food;
+import christmas.order.Food;
 import java.util.List;
 import java.util.Map;
 

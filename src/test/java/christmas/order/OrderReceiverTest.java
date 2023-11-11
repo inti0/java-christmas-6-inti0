@@ -1,9 +1,9 @@
 package christmas.order;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.HashMap;
-import java.util.NoSuchElementException;
+import java.util.EnumMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,14 +13,14 @@ class OrderReceiverTest {
     OrderReceiver receiver;
 
     @BeforeEach
-    void 생성자주입(){
-        receiver = new OrderReceiver(new HashMap<>());
+    void 생성자주입() {
+        receiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
     }
 
     @Test
     void 주문테스트1() {
-        receiver.orderFood("티본스테이크",5);
-        receiver.orderFood("제로콜라",15);
+        receiver.orderFood("티본스테이크", 5);
+        receiver.orderFood("제로콜라", 15);
 
         int size = receiver.getOrders().size();
 
@@ -30,8 +30,8 @@ class OrderReceiverTest {
     @DisplayName("주문 중 이름이 틀리면 오류가 발생한다.")
     @Test
     void 주문_이름_오류() {
-        assertThatThrownBy(()->
-                receiver.orderFood("티본 스테이크",7))
+        assertThatThrownBy(() ->
+                receiver.orderFood("티본 스테이크", 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -54,16 +54,16 @@ class OrderReceiverTest {
     @DisplayName("주문한 메뉴의 총량이 20을 넘어가면 예외가 발생한다")
     @Test
     void 메뉴총량_테스트() {
-        assertThatThrownBy(() ->{
+        assertThatThrownBy(() -> {
             receiver.orderFood("티본스테이크", 4);
             receiver.orderFood("제로콜라", 17);
-            }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("같은 메뉴를 두번 주문하면 예외가 발생한다")
     @Test
     void 중복주문_테스트() {
-        assertThatThrownBy(() ->{
+        assertThatThrownBy(() -> {
             receiver.orderFood("티본스테이크", 4);
             receiver.orderFood("레드와인", 4);
             receiver.orderFood("티본스테이크", 3);
@@ -72,10 +72,10 @@ class OrderReceiverTest {
 
     @DisplayName("음료만 주문했는지 확인할 수 있다. 음료만 있다면 true")
     @Test
-    void 음료_테스트(){
-        receiver.orderFood("레드와인",5);
-        receiver.orderFood("제로콜라",3);
-        receiver.orderFood("샴페인",3);
+    void 음료_테스트() {
+        receiver.orderFood("레드와인", 5);
+        receiver.orderFood("제로콜라", 3);
+        receiver.orderFood("샴페인", 3);
 
         boolean onlyDrink = receiver.hasCustomerOrderedOnlyDrink();
 
@@ -84,10 +84,10 @@ class OrderReceiverTest {
 
     @DisplayName("음료만 주문했는지 확인할 수 있다. 음료 말고도 있다면 false")
     @Test
-    void 음료_테스트2(){
-        receiver.orderFood("티본스테이크",5);
-        receiver.orderFood("제로콜라",3);
-        receiver.orderFood("샴페인",3);
+    void 음료_테스트2() {
+        receiver.orderFood("티본스테이크", 5);
+        receiver.orderFood("제로콜라", 3);
+        receiver.orderFood("샴페인", 3);
 
         boolean onlyDrink = receiver.hasCustomerOrderedOnlyDrink();
 
