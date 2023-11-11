@@ -7,14 +7,12 @@ import java.util.EnumMap;
 
 public class InputView {
 
-    private static final int LAST_DATE = 31;
     private static final int FIRST_DATE = 1;
-    private static final String INPUT_DELIMITER = ",";
+    private static final int LAST_DATE = 31;
     private static final int ORDER_MAX_RANGE = 20;
+    private static final int UNIT_ORDER_SIZE = 2;
+    private static final String INPUT_DELIMITER = ",";
     private static final String ORDER_DELIMITER = "-";
-    private static final int UNIT_ORDER_FORMAT_SIZE = 2;
-    private static final int ILLEGAL_ORDER_LENGTH = 2;
-
 
     public int readDate() {
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
@@ -30,9 +28,11 @@ public class InputView {
     private int parseDate() {
         String input = Console.readLine();
         int date = Integer.parseInt(input);
+
         if(date > LAST_DATE || date < FIRST_DATE) {
             throw new IllegalArgumentException();
         }
+
         return date;
     }
 
@@ -60,7 +60,7 @@ public class InputView {
     }
     private static void processOrder(String[] strings, OrderReceiver orderReceiver) {
         for (String menuAndAmount : strings) {
-            String[] split = menuAndAmount.split(ORDER_DELIMITER, UNIT_ORDER_FORMAT_SIZE);
+            String[] split = menuAndAmount.split(ORDER_DELIMITER, UNIT_ORDER_SIZE);
             validateLength(split);
 
             String menu = split[0].trim();
@@ -70,7 +70,7 @@ public class InputView {
         }
     }
     private static void validateLength(String[] split) {
-        if(split.length < ILLEGAL_ORDER_LENGTH){
+        if(split.length < UNIT_ORDER_SIZE){
             throw new IllegalArgumentException();
         }
     }
