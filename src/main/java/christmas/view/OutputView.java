@@ -3,7 +3,6 @@ package christmas.view;
 import christmas.EventBadge;
 import christmas.benefit.Present;
 import christmas.model.OrderResult;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -93,7 +92,7 @@ public class OutputView {
 
     public String toStringEventBadge(){
         EventBadge eventBadge = result.giveEventBadge();
-        return eventBadge.item;
+        return eventBadge.getName();
     }
 }
 

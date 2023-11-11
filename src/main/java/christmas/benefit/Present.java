@@ -2,8 +2,8 @@ package christmas.benefit;
 
 public enum Present {
 
-    CHAMPAGNE(120_000, 25_000,"샴페인"),
-    NOTHING(0,0,"없음");
+    CHAMPAGNE(120_000, 25_000, "샴페인"),
+    NOTHING(0, 0, "없음");
     private final int condition;
     private final int price;
     private final String item;
@@ -14,8 +14,8 @@ public enum Present {
         this.item = item;
     }
 
-    static public Present selectPresent(int originalPrice){
-        if(originalPrice >= Present.CHAMPAGNE.condition) {
+    static public Present selectPresent(int originalPrice) {
+        if (originalPrice >= Present.CHAMPAGNE.condition) {
             return Present.CHAMPAGNE;
         }
         return Present.NOTHING;

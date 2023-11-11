@@ -1,29 +1,29 @@
 package christmas;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public enum EventBadge {
     SANTA("산타", 20_000),
-    STAR("별", 5_000),
     TREE("트리", 10_000),
-    NOTHING("없음",0);
+    STAR("별", 5_000),
+    NOTHING("없음", 0);
 
-    public String item;
-    public int condition;
+    private String name;
+    private int condition;
 
-    private EventBadge(String item, int condition) {
-        this.item = item;
+    private EventBadge(String name, int condition) {
+        this.name = name;
         this.condition = condition;
     }
+    public String getName() {
+        return name;
+    }
 
-    static public EventBadge selectEventBadge(int discountSum){
-        if(discountSum >= EventBadge.SANTA.condition) {
-            return EventBadge.SANTA;
-        }
-        if(discountSum >= EventBadge.TREE.condition) {
-            return EventBadge.TREE;
-        }
-        if(discountSum >= EventBadge.STAR.condition) {
-            return EventBadge.STAR;
-        }
-        return NOTHING;
+    static public EventBadge selectEventBadge(int discountSum) {
+        return Arrays.stream(EventBadge.values())
+                .filter(eventBadge -> discountSum >= eventBadge.condition)
+                .min(Comparator.naturalOrder())
+                .orElse(NOTHING);
     }
 }

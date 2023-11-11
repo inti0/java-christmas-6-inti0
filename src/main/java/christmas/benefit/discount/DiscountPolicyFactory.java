@@ -14,7 +14,7 @@ public class DiscountPolicyFactory {
         this.bookDate = bookDate;
     }
 
-    public List<DiscountPolicy> createDiscountPolicies () {
+    public List<DiscountPolicy> createDiscountPolicies() {
         DiscountPolicy dayOfWeekDiscount = new DayOfWeekDiscount(orders, bookDate);
         DiscountPolicy dDayDiscount = new DDayDiscount(bookDate);
         DiscountPolicy specialDayDiscount = new SpecialDayDiscount(bookDate);

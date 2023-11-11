@@ -17,11 +17,13 @@ public class OrderResult {
         this.orders = orders;
         this.discountPolicies = discountPolicies;
     }
-    public int beforeDiscountSum(){
+
+    public int beforeDiscountSum() {
         return orders.entrySet().stream()
                 .mapToInt(entry -> (entry.getKey().getPrice()) * (entry.getValue()))
                 .sum();
     }
+
     public int allOfDiscount() {
         if (beforeDiscountSum() < DISCOUNT_MIN_RANGE) {
             return NO_DISCOUNT;
@@ -32,15 +34,18 @@ public class OrderResult {
                 .sum();
     }
 
-    public Present givePresent(){
+    public Present givePresent() {
         return Present.selectPresent(beforeDiscountSum());
     }
-    public EventBadge giveEventBadge(){
+
+    public EventBadge giveEventBadge() {
         return EventBadge.selectEventBadge(allOfDiscount());
     }
+
     public int paymentAfterDiscount() {
         return beforeDiscountSum() - allOfDiscount();
     }
+
     public int allOfBenefitAmount() {
         return givePresent().getPrice() + allOfDiscount();
     }
