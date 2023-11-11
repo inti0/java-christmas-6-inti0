@@ -13,6 +13,7 @@ public class InputView {
     private static final int ORDER_MAX_RANGE = 20;
     private static final String ORDER_DELIMITER = "-";
     private static final int ORDER_SIZE = 2;
+    private static final int ILLEGAL_ORDER_LENGTH = 2;
 
 
     public int readDate() {
@@ -42,8 +43,6 @@ public class InputView {
                 String orderLine = Console.readLine();
                 String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
                 return createValidOrder(strings);
-            } catch (ArrayIndexOutOfBoundsException exception) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             } catch (IllegalArgumentException exception) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
@@ -55,11 +54,18 @@ public class InputView {
 
         for (String menuAndAmount : strings) {
             String[] split = menuAndAmount.split(ORDER_DELIMITER, ORDER_SIZE);
+            validateLength(split);
             String menu = split[0];
             int amount = Integer.parseInt(split[1]);
 
             orderReceiver.orderFood(menu, amount);
         }
         return orderReceiver;
+    }
+
+    private static void validateLength(String[] split) {
+        if(split.length < ILLEGAL_ORDER_LENGTH){
+            throw new IllegalArgumentException();
+        }
     }
 }

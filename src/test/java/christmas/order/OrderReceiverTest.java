@@ -32,7 +32,7 @@ class OrderReceiverTest {
     void 주문_이름_오류() {
         assertThatThrownBy(()->
                 receiver.orderFood("티본 스테이크",7))
-                .isInstanceOf(NoSuchElementException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("주문 중 주문 수량이 잘못 되면 오류가 발생한다.")

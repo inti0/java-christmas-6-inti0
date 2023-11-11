@@ -7,21 +7,6 @@ import christmas.foodmenu.Food;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <할인 전 총주문 금액>
- * 8,500원
- *
- * <증정 메뉴>
- * 없음
- *
- * <혜택 내역>
- * 없음
- *
- * <총혜택 금액>
- * 0원
- *
- * <할인 후 예상 결제 금액>
- */
 public class OrderResult {
     private static final int NO_DISCOUNT = 0;
     private static final int DISCOUNT_MIN_RANGE = 10000;
@@ -34,11 +19,10 @@ public class OrderResult {
     }
     public int beforeDiscountSum(){
         return orders.entrySet().stream()
-                .mapToInt(entry -> (entry.getKey().price) * (entry.getValue()))
+                .mapToInt(entry -> (entry.getKey().getPrice()) * (entry.getValue()))
                 .sum();
     }
     public int allOfDiscount() {
-
         if (beforeDiscountSum() < DISCOUNT_MIN_RANGE) {
             return NO_DISCOUNT;
         }

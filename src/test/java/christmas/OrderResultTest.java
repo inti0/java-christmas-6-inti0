@@ -75,6 +75,7 @@ public class OrderResultTest {
         assertThat(discount).isEqualTo(0);
     }
     @Test
+    @DisplayName("증정품은 혜택전 금액이 12만원 이상이면 주어진다.")
     void 증정품_테스트(){
         Present present = orderResult.givePresent();
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
@@ -90,6 +91,7 @@ public class OrderResultTest {
         assertThat(benefit).isEqualTo(dDay + specialDay + dayDiscount + present);
     }
     @Test
+    @DisplayName("뱃지는 할인액에 따라 주어진다.")
     void 뱃지지급_테스트(){
         EventBadge eventBadge = orderResult.giveEventBadge();
         assertThat(eventBadge).isEqualTo(EventBadge.TREE);

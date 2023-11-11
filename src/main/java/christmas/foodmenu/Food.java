@@ -16,10 +16,10 @@ public enum Food {
     ZERO_COLA("제로콜라", 3_000, FoodType.DRINK),
     RED_WINE("레드와인", 60_000, FoodType.DRINK),
     CHAMPAGNE("샴페인",25_000, FoodType.DRINK);
-    public String name;
-    public int price;
-    public FoodType foodType;
-    Food(String name, int price, FoodType foodType) {
+    private String name;
+    private int price;
+    private FoodType foodType;
+    private Food(String name, int price, FoodType foodType) {
         this.name = name;
         this.price = price;
         this.foodType = foodType;
@@ -28,5 +28,17 @@ public enum Food {
         return Arrays.stream(Food.values())
                 .filter(food -> food.name.equals(inputName))
                 .findAny().orElseThrow(IllegalArgumentException::new);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
     }
 }

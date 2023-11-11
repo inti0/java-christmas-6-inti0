@@ -20,6 +20,6 @@ public class FoodTest {
         String menuName = "콜라";
         Assertions.assertThatThrownBy(()->
                 Food.findMenuBy(menuName))
-                .isInstanceOf(NoSuchElementException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

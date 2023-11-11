@@ -19,20 +19,20 @@ public class DayOfWeekDiscount implements DiscountPolicy {
     public int discountAmount(){
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
         int amount = orders.keySet().stream()
-                .filter(key -> isDayDiscountFood(key, dayOfWeek))
+                .filter(key -> isDailyDiscountApplicable(key, dayOfWeek))
                 .map(key -> orders.getOrDefault(key, 0))
                 .mapToInt(Integer::intValue)
                 .sum();
         return DAY_DISCOUNT * amount;
     }
 
-    private boolean isDayDiscountFood(Food food, DayOfWeek dayOfWeek) {
-        if(food.foodType.equals(FoodType.MAIN)){
-            return isWeekend(dayOfWeek);
+    private boolean isDailyDiscountApplicable(Food food, DayOfWeek bookDay) {
+        if(food.getFoodType().equals(FoodType.MAIN)){
+            return isWeekend(bookDay);
         }
-
-        if(food.foodType.equals(FoodType.DESSERT)){
-            return !isWeekend(dayOfWeek);
+        
+        if(food.getFoodType().equals(FoodType.DESSERT)){
+            return !isWeekend(bookDay);
         }
         return false;
     }
