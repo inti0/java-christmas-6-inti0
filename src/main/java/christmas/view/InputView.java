@@ -12,7 +12,7 @@ public class InputView {
     private static final String INPUT_DELIMITER = ",";
     private static final int ORDER_MAX_RANGE = 20;
     private static final String ORDER_DELIMITER = "-";
-    private static final int ORDER_SIZE = 2;
+    private static final int UNIT_ORDER_FORMAT_SIZE = 2;
     private static final int ILLEGAL_ORDER_LENGTH = 2;
 
 
@@ -40,31 +40,43 @@ public class InputView {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         while (true){
             try {
-                String orderLine = Console.readLine();
-                String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
-                return createValidOrder(strings);
+                return createValidOrder();
             } catch (IllegalArgumentException exception) {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
 
-    private OrderReceiver createValidOrder(String[] strings) {
+    private OrderReceiver createValidOrder() {
         OrderReceiver orderReceiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
 
+        String orderLine = Console.readLine();
+        String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
+        processOrder(strings, orderReceiver);
+
+        checkOnlyDrink(orderReceiver);
+
+        return orderReceiver;
+    }
+    private static void processOrder(String[] strings, OrderReceiver orderReceiver) {
         for (String menuAndAmount : strings) {
-            String[] split = menuAndAmount.split(ORDER_DELIMITER, ORDER_SIZE);
+            String[] split = menuAndAmount.split(ORDER_DELIMITER, UNIT_ORDER_FORMAT_SIZE);
             validateLength(split);
+
             String menu = split[0].trim();
             int amount = Integer.parseInt(split[1].trim());
 
             orderReceiver.orderFood(menu, amount);
         }
-        return orderReceiver;
     }
-
     private static void validateLength(String[] split) {
         if(split.length < ILLEGAL_ORDER_LENGTH){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkOnlyDrink(OrderReceiver orderReceiver) {
+        if(orderReceiver.isOrderContainOnlyDrink()){
             throw new IllegalArgumentException();
         }
     }

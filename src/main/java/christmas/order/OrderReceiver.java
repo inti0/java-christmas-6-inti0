@@ -45,7 +45,7 @@ public class OrderReceiver {
         }
     }
 
-    public boolean hasCustomerOrderedOnlyDrink() {
+    public boolean isOrderContainOnlyDrink() {
         return orders.keySet().stream()
                 .allMatch(food -> food.getFoodType().equals(FoodType.DRINK));
     }

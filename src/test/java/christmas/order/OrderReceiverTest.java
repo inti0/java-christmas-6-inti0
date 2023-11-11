@@ -77,7 +77,7 @@ class OrderReceiverTest {
         receiver.orderFood("제로콜라", 3);
         receiver.orderFood("샴페인", 3);
 
-        boolean onlyDrink = receiver.hasCustomerOrderedOnlyDrink();
+        boolean onlyDrink = receiver.isOrderContainOnlyDrink();
 
         assertThat(onlyDrink).isEqualTo(true);
     }
@@ -89,7 +89,7 @@ class OrderReceiverTest {
         receiver.orderFood("제로콜라", 3);
         receiver.orderFood("샴페인", 3);
 
-        boolean onlyDrink = receiver.hasCustomerOrderedOnlyDrink();
+        boolean onlyDrink = receiver.isOrderContainOnlyDrink();
 
         assertThat(onlyDrink).isEqualTo(false);
     }

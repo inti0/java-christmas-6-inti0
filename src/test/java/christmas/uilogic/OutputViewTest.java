@@ -14,7 +14,7 @@ import org.mockito.Mockito;
 public class OutputViewTest {
     OrderResult orderResult = Mockito.mock(OrderResult.class);
     OutputView outputView = new OutputView(orderResult);
-    OutputView mockedView = Mockito.mock(OutputView.class);
+
     @Test
     void 주문출력_테스트() {
         Map<Food, Integer> orders = Map.of(
@@ -50,6 +50,7 @@ public class OutputViewTest {
 
     @Test
     void 혜택내역_테스트() {
+
 
     }
 

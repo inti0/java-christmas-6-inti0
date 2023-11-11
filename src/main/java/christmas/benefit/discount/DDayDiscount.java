@@ -16,7 +16,7 @@ public class DDayDiscount implements DiscountPolicy {
         int dayOfMonth = localDate.getDayOfMonth();
 
         if (dayOfMonth > AppConfig.CHRISTMAS_DATE) {
-            return 0;
+            return AppConfig.NO_DISCOUNT;
         }
         return dayOfMonth * DISCOUNT_INCREASE_PER_DAY + DISCOUNT_PRICE_DEFAULT;
     }

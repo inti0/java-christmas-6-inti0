@@ -5,4 +5,7 @@ public enum FoodType {
     MAIN,
     DESSERT,
     DRINK;
+
+    private FoodType() {
+    }
 }

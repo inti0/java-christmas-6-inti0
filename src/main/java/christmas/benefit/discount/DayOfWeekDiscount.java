@@ -18,11 +18,13 @@ public class DayOfWeekDiscount implements DiscountPolicy {
 
     public int discountAmount() {
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+
         int amount = orders.keySet().stream()
                 .filter(key -> isDailyDiscountApplicable(key, dayOfWeek))
-                .map(key -> orders.getOrDefault(key, 0))
+                .map(orders::get)
                 .mapToInt(Integer::intValue)
                 .sum();
+
         return DAY_DISCOUNT * amount;
     }
 

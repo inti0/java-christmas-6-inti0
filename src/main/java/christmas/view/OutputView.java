@@ -6,13 +6,13 @@ import christmas.model.OrderResult;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String NEXT_LINE = "\n";
     private static final int PRESENT_AMOUNT = 1;
     private static final int NO_DISCOUNT = 0;
-    private static final String BLANK = "";
+    private static final int NEGATIVE_SIGN = -1;
+    private static final String NEXT_LINE = "\n";
     private static final String NOTHING_FORMAT = "없음";
+    private static final String DISCOUNT_FORMAT = "%s: %,d원";
     private final String ORDER_FORMAT = "%s %d개";
-    private final String DISCOUNT_FORMAT = "%s: -%,d원";
     private final String PAYMENT_FORMAT = "%,d원";
     private final String PRESENT_BENEFIT_FORMAT = "증정 이벤트: -%d원";
     private final OrderResult result;
@@ -62,7 +62,8 @@ public class OutputView {
         return result.getDiscountPolicies().stream()
                 .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)
                 .map(discountPolicy ->
-                        DISCOUNT_FORMAT.formatted(discountPolicy.discountSource(), discountPolicy.discountAmount()))
+                        DISCOUNT_FORMAT.formatted(discountPolicy.discountSource(),
+                                NEGATIVE_SIGN * discountPolicy.discountAmount()))
                 .collect(Collectors.joining(NEXT_LINE));
     }
 
@@ -83,7 +84,7 @@ public class OutputView {
     }
 
     public String toStringAllOfBenefitAmount(){
-        return PAYMENT_FORMAT.formatted(-result.allOfBenefitAmount());
+        return PAYMENT_FORMAT.formatted(NEGATIVE_SIGN * result.allOfBenefitAmount());
     }
 
     public String toStringPaymentAfterDiscount(){
