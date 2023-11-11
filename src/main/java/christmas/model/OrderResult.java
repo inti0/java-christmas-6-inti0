@@ -39,7 +39,7 @@ public class OrderResult {
     }
 
     public EventBadge giveEventBadge() {
-        return EventBadge.selectEventBadge(allOfDiscount());
+        return EventBadge.selectEventBadge(allOfDiscount() + givePresent().getPrice());
     }
 
     public int paymentAfterDiscount() {

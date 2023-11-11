@@ -20,9 +20,9 @@ public enum EventBadge {
         return name;
     }
 
-    static public EventBadge selectEventBadge(int discountSum) {
+    static public EventBadge selectEventBadge(int benefitSum) {
         return Arrays.stream(EventBadge.values())
-                .filter(eventBadge -> discountSum >= eventBadge.condition)
+                .filter(eventBadge -> benefitSum >= eventBadge.condition)
                 .min(Comparator.naturalOrder())
                 .orElse(NOTHING);
     }

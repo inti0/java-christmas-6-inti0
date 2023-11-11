@@ -37,6 +37,9 @@ public class InputView {
     }
 
     public OrderReceiver readOrder(){
+        System.out.println("총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.");
+        System.out.println("음료만 주문 시, 주문할 수 없습니다.");
+        System.out.println("메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         while (true){
             try {
