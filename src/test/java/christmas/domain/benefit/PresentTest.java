@@ -1,7 +1,8 @@
-package christmas.benefit;
+package christmas.domain.benefit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.benefit.Present;
 import org.junit.jupiter.api.Test;
 
 class PresentTest {

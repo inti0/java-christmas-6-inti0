@@ -2,9 +2,9 @@ package christmas.uilogic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.EventBadge;
-import christmas.benefit.Present;
-import christmas.order.Food;
+import christmas.domain.EventBadge;
+import christmas.domain.benefit.Present;
+import christmas.domain.order.Food;
 import christmas.model.OrderResult;
 import christmas.view.OutputView;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package christmas.view;
 
-import christmas.EventBadge;
-import christmas.benefit.Present;
+import christmas.domain.EventBadge;
+import christmas.domain.benefit.Present;
 import christmas.model.OrderResult;
 import java.util.stream.Collectors;
 

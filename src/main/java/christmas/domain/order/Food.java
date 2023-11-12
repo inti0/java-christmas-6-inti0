@@ -1,4 +1,4 @@
-package christmas.order;
+package christmas.domain.order;
 
 import java.util.Arrays;
 

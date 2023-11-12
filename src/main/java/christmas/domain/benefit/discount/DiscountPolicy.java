@@ -1,4 +1,4 @@
-package christmas.benefit.discount;
+package christmas.domain.benefit.discount;
 
 public interface DiscountPolicy {
 

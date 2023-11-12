@@ -1,7 +1,7 @@
-package christmas.benefit.discount;
+package christmas.domain.benefit.discount;
 
-import christmas.order.Food;
-import christmas.order.FoodType;
+import christmas.domain.order.Food;
+import christmas.domain.order.FoodType;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Map;

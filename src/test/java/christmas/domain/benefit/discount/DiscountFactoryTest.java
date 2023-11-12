@@ -1,7 +1,9 @@
-package christmas.benefit.discount;
+package christmas.domain.benefit.discount;
 
-import christmas.order.Food;
-import christmas.order.OrderReceiver;
+import christmas.domain.benefit.discount.DiscountPolicy;
+import christmas.domain.benefit.discount.DiscountPolicyFactory;
+import christmas.domain.order.Food;
+import christmas.domain.order.OrderReceiver;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;

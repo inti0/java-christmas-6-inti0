@@ -1,9 +1,9 @@
 package christmas.model;
 
-import christmas.EventBadge;
-import christmas.benefit.Present;
-import christmas.benefit.discount.DiscountPolicy;
-import christmas.order.Food;
+import christmas.domain.EventBadge;
+import christmas.domain.benefit.Present;
+import christmas.domain.benefit.discount.DiscountPolicy;
+import christmas.domain.order.Food;
 import java.util.List;
 import java.util.Map;
 

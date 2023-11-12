@@ -1,8 +1,10 @@
-package christmas.order;
+package christmas.domain.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import christmas.domain.order.Food;
+import christmas.domain.order.OrderReceiver;
 import java.util.EnumMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

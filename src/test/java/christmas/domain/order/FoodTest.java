@@ -1,7 +1,7 @@
-package christmas.order;
+package christmas.domain.order;
 
-import christmas.order.Food;
-import christmas.order.OrderReceiver;
+import christmas.domain.order.Food;
+import christmas.domain.order.OrderReceiver;
 import java.util.EnumMap;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

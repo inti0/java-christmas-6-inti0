@@ -1,11 +1,11 @@
 package christmas.controller;
 
 import christmas.AppConfig;
-import christmas.benefit.discount.DiscountPolicy;
-import christmas.benefit.discount.DiscountPolicyFactory;
-import christmas.order.Food;
+import christmas.domain.benefit.discount.DiscountPolicy;
+import christmas.domain.benefit.discount.DiscountPolicyFactory;
+import christmas.domain.order.Food;
 import christmas.model.OrderResult;
-import christmas.order.OrderReceiver;
+import christmas.domain.order.OrderReceiver;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.time.LocalDate;

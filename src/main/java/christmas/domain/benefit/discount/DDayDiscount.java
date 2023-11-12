@@ -1,4 +1,4 @@
-package christmas.benefit.discount;
+package christmas.domain.benefit.discount;
 
 import christmas.AppConfig;
 import java.time.LocalDate;

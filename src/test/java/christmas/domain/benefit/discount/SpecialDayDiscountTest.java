@@ -1,5 +1,6 @@
-package christmas.benefit.discount;
+package christmas.domain.benefit.discount;
 
+import christmas.domain.benefit.discount.SpecialDayDiscount;
 import java.time.LocalDate;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

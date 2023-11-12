@@ -1,8 +1,8 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.order.Food;
-import christmas.order.OrderReceiver;
+import christmas.domain.order.Food;
+import christmas.domain.order.OrderReceiver;
 import java.util.EnumMap;
 
 public class InputView {
@@ -15,7 +15,8 @@ public class InputView {
     private static final String ORDER_DELIMITER = "-";
 
     public int readDate() {
-        System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
+        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다. \n" +
+                "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
         while (true) {
             try {
                 return parseDate();
@@ -37,10 +38,7 @@ public class InputView {
     }
 
     public OrderReceiver readOrder(){
-        System.out.println("총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.");
-        System.out.println("음료만 주문 시, 주문할 수 없습니다.");
-        System.out.println("메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
-        System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
+        orderGreetMessage();
         while (true){
             try {
                 return createValidOrder();
@@ -48,6 +46,13 @@ public class InputView {
                 System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
+    }
+
+    private static void orderGreetMessage() {
+        System.out.println("총주문 금액 10,000원 이상부터 이벤트가 적용됩니다. \n" +
+                        "음료만 주문 시, 주문할 수 없습니다. \n" +
+                        "메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다. \n" +
+                "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
     }
 
     private OrderReceiver createValidOrder() {

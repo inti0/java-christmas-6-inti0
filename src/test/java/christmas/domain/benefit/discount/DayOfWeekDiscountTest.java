@@ -1,9 +1,10 @@
-package christmas.benefit.discount;
+package christmas.domain.benefit.discount;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.order.Food;
-import christmas.order.OrderReceiver;
+import christmas.domain.benefit.discount.DayOfWeekDiscount;
+import christmas.domain.order.Food;
+import christmas.domain.order.OrderReceiver;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;

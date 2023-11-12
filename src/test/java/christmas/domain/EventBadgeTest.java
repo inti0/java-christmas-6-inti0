@@ -1,7 +1,8 @@
-package christmas;
+package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.EventBadge;
 import org.junit.jupiter.api.Test;
 
 class EventBadgeTest {
