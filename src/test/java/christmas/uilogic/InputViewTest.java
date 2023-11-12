@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -51,6 +52,15 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"양송이수프-일", "양송이수프", "양송이숩-3", "제로콜라,아이스크림"})
     void 주문_실패_테스트(String input) {
+        setIn(input);
+        assertThatThrownBy(() -> inputView.readDate())
+                .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"제로콜라-3,샴페인-5","제로콜라-1"})
+    @DisplayName("음료만 주문할 수 없다")
+    void only_음료_실패_테스트(String input) {
         setIn(input);
         assertThatThrownBy(() -> inputView.readDate())
                 .isInstanceOf(NoSuchElementException.class);

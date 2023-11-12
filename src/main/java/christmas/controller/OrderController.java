@@ -15,31 +15,30 @@ import java.util.Map;
 
 public class OrderController {
     private final InputView inputView;
-    private OrderResult orderResult;
-    private OutputView outputView;
-
     public OrderController(InputView inputView) {
         this.inputView = inputView;
     }
 
     public void run() {
-        book();
-        printBill();
+        OrderResult orderResult = book();
+        printBill(orderResult);
     }
-    private void book() {
+    
+    private OrderResult book() {
         int date = inputView.readDate();
-        OrderReceiver orderReceiver = inputView.readOrder();
         LocalDate bookDate = LocalDate.of(AppConfig.THIS_YEAR, Month.DECEMBER, date);
+
+        OrderReceiver orderReceiver = inputView.readOrder();
         Map<Food, Integer> orders = orderReceiver.getOrders();
 
         DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(orders, bookDate);
         List<DiscountPolicy> discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
-        orderResult = new OrderResult(orders, discountPolicies);
+        return new OrderResult(orders, discountPolicies);
     }
 
-    private void printBill() {
-        outputView = new OutputView(orderResult);
+    private void printBill(OrderResult orderResult) {
+        OutputView outputView = new OutputView(orderResult);
         outputView.print();
     }
 }

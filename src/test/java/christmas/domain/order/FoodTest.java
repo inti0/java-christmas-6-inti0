@@ -10,14 +10,14 @@ public class FoodTest {
     OrderReceiver order = new OrderReceiver(new EnumMap<>(Food.class));
 
     @Test
-    void 푸드_테스트() {
+    void 음식_찾기_테스트() {
         String menuName = "양송이수프";
         Food food = Food.findMenuByName(menuName);
         Assertions.assertThat(food).isNotNull();
     }
 
     @Test
-    void 푸드메뉴_실패테스트() {
+    void 음식_찾기_실패테스트() {
         String menuName = "콜라";
         Assertions.assertThatThrownBy(() ->
                         Food.findMenuByName(menuName))

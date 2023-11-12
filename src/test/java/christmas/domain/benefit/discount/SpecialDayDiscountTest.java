@@ -19,11 +19,11 @@ public class SpecialDayDiscountTest {
         SpecialDayDiscount specialDayDiscount1 = new SpecialDayDiscount(localDate1);
         SpecialDayDiscount specialDayDiscount2 = new SpecialDayDiscount(localDate2);
 
-        int dc1 = specialDayDiscount1.discountAmount();
-        int dc2 = specialDayDiscount2.discountAmount();
+        int discount1 = specialDayDiscount1.discountAmount();
+        int discount2 = specialDayDiscount2.discountAmount();
 
-        Assertions.assertThat(dc1).isEqualTo(1000);
-        Assertions.assertThat(dc2).isEqualTo(1000);
+        Assertions.assertThat(discount1).isEqualTo(1000);
+        Assertions.assertThat(discount2).isEqualTo(1000);
     }
 
     @Test
@@ -34,10 +34,10 @@ public class SpecialDayDiscountTest {
         SpecialDayDiscount specialDayDiscount1 = new SpecialDayDiscount(localDate1);
         SpecialDayDiscount specialDayDiscount2 = new SpecialDayDiscount(localDate2);
 
-        int dc1 = specialDayDiscount1.discountAmount();
-        int dc2 = specialDayDiscount2.discountAmount();
+        int discount1 = specialDayDiscount1.discountAmount();
+        int discount2 = specialDayDiscount2.discountAmount();
 
-        Assertions.assertThat(dc1).isEqualTo(0);
-        Assertions.assertThat(dc2).isEqualTo(0);
+        Assertions.assertThat(discount1).isEqualTo(0);
+        Assertions.assertThat(discount2).isEqualTo(0);
     }
 }
