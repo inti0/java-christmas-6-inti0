@@ -119,7 +119,7 @@ public class OrderResultTest {
     @Test
     void 뱃지지급_산타_테스트(){
         EventBadge eventBadge = orderResult.giveEventBadge();
-        assertThat(eventBadge).isEqualTo(EventBadge.SANTA);
+        assertThat(eventBadge).isEqualTo(EventBadge.SANTA); 
     }
 
     @Test
