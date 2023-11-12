@@ -66,10 +66,10 @@ public class OutputView {
         }
         return result.getDiscountPolicies().stream()
                 .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)
-                .map(discountPolicy ->
-                        DISCOUNT_FORMAT.formatted(
-                                discountPolicy.discountSource(),
-                                NEGATIVE_SIGN * discountPolicy.discountAmount()
+                .map(discountPolicy -> String.format(
+                        DISCOUNT_FORMAT,
+                        discountPolicy.discountSource(),
+                        NEGATIVE_SIGN * discountPolicy.discountAmount()
                         ))
                 .collect(Collectors.joining(NEXT_LINE));
     }

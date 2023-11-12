@@ -23,7 +23,7 @@ public class OrderController {
         OrderResult orderResult = book();
         printBill(orderResult);
     }
-    
+
     private OrderResult book() {
         int date = inputView.readDate();
         LocalDate bookDate = LocalDate.of(AppConfig.THIS_YEAR, Month.DECEMBER, date);
