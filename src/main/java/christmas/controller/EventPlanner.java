@@ -13,15 +13,16 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class OrderController {
+public class EventPlanner {
     private final InputView inputView;
-    public OrderController(InputView inputView) {
+
+    public EventPlanner(InputView inputView) {
         this.inputView = inputView;
     }
 
     public void run() {
         LocalDate bookDate = readBookDate();
-        Map<Food, Integer> orders = readOrders();
+        Map<Food, Integer> orders = processOrder();
         OrderResult orderResult = getResult(bookDate, orders);
         printBill(orderResult);
     }
@@ -31,19 +32,18 @@ public class OrderController {
         return LocalDate.of(AppConfig.THIS_YEAR, AppConfig.THIS_MONTH, date);
     }
 
-    private Map<Food, Integer> readOrders() {
+    private Map<Food, Integer> processOrder() {
         while (true) {
             try {
                 List<String> strings = inputView.parseInputToOrders();
                 OrderManager orderManger = new OrderManager(strings);
-                OrderReceiver orderReceiver = orderManger.processOrder();
+                OrderReceiver orderReceiver = orderManger.handleOrder();
                 Map<Food, Integer> orders = orderReceiver.getOrders();
                 return orders;
             } catch (IllegalArgumentException exception) {
-                inputView.CreateOrderErrorMessage();
+                inputView.OrderErrorMessage();
             }
         }
-
     }
 
     private OrderResult getResult(LocalDate bookDate, Map<Food, Integer> orders) {

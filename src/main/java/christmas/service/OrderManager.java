@@ -9,11 +9,12 @@ public class OrderManager {
     private static final String ORDER_DELIMITER = "-";
     private static final int UNIT_ORDER_SIZE = 2;
     private final List<String> menuAndAmount;
+
     public OrderManager(List<String> menuAndAmount) {
         this.menuAndAmount = menuAndAmount;
     }
 
-    public OrderReceiver processOrder() {
+    public OrderReceiver handleOrder() {
         OrderReceiver orderReceiver = createValidOrder();
         checkOnlyDrink(orderReceiver);
         return orderReceiver;
@@ -31,13 +32,13 @@ public class OrderManager {
     }
 
     private static void validateLength(String[] split) {
-        if(split.length != UNIT_ORDER_SIZE){
+        if (split.length != UNIT_ORDER_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
     private static void checkOnlyDrink(OrderReceiver orderReceiver) {
-        if(orderReceiver.isOrderContainOnlyDrink()){
+        if (orderReceiver.isOrderContainOnlyDrink()) {
             throw new IllegalArgumentException();
         }
     }

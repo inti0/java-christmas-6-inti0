@@ -1,5 +1,6 @@
 package christmas.uilogic;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -7,6 +8,7 @@ import christmas.AppConfig;
 import christmas.view.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +26,7 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1", "21", "31", "25"})
+    @ValueSource(strings = {"1", "21 ", "  31 ", "25"})
     void 날짜_테스트(String input) {
         setIn(input);
 
@@ -41,29 +43,14 @@ public class InputViewTest {
     }
 
     @Test
+    @DisplayName("주문입력에서 띄어쓰기는 무시되고 주문은 ,로 구분된다.")
     void 주문_테스트() {
-        String allFood = " 양송이수프 - 1 , 타파스-1,시저샐러드-1,티본스테이크-1,바비큐립-1,"
-                + "해산물파스타-1,크리스마스파스타-1,초코케이크-1,아이스크림-1,제로콜라-1,레드와인-1,샴페인-1";
+        String allFood = " 양송이수프 - 1 , 토 마토파스타-1";
         setIn(allFood);
-        inputView.readOrder();
+        List<String> strings = inputView.parseInputToOrders();
 
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"양송이수프-일", "양송이수프", "양송이숩-3", "제로콜라,아이스크림"})
-    void 주문_실패_테스트(String input) {
-        setIn(input);
-        assertThatThrownBy(() -> inputView.readDate())
-                .isInstanceOf(NoSuchElementException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"제로콜라-3,샴페인-5","제로콜라-1"})
-    @DisplayName("음료만 주문할 수 없다")
-    void only_음료_실패_테스트(String input) {
-        setIn(input);
-        assertThatThrownBy(() -> inputView.readDate())
-                .isInstanceOf(NoSuchElementException.class);
+        assertThat(strings.get(0)).isEqualTo("양송이수프-1");
+        assertThat(strings.get(1)).isEqualTo("토마토파스타-1");
     }
 
     private static void setIn(String input) {
