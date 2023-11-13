@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.controller.EventPlanner;
 import christmas.domain.benefit.discount.DiscountPolicyFactory;
 import christmas.domain.order.Food;
 import christmas.domain.order.OrderReceiver;
@@ -28,7 +29,7 @@ public class AppConfig {
         return new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
     }
 
-    public static OrderManager orderManger(List<String> strings) {
+    public static OrderManager orderManager(List<String> strings) {
         return new OrderManager(strings);
     }
 
@@ -38,5 +39,9 @@ public class AppConfig {
 
     public static OutputView outputView(OrderResult orderResult) {
         return new OutputView(orderResult);
+    }
+
+    public static EventPlanner eventPlanner() {
+        return new EventPlanner(AppConfig.inputView());
     }
 }

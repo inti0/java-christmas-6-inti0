@@ -16,7 +16,7 @@ public class SpecialDayDiscount implements DiscountPolicy {
         if (isSpecialDay()) {
             return SPECIAL_DAY_DISCOUNT_PRICE;
         }
-        return 0;
+        return AppConfig.NO_DISCOUNT;
     }
 
     private boolean isSpecialDay() {

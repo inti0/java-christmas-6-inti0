@@ -26,7 +26,7 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1", "21 ", "  31 ", "25"})
+    @ValueSource(strings = {"1", "21 ", "  31 ", "25",})
     void 날짜_테스트(String input) {
         setIn(input);
 
@@ -34,7 +34,7 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1일", "크리스마스", "iv", "0"})
+    @ValueSource(strings = {"1일", "크리스마스", "iv", "0", ""})
     void 날짜_예외_테스트(String input) {
         setIn(input);
 
@@ -47,7 +47,7 @@ public class InputViewTest {
     void 주문_테스트() {
         String allFood = " 양송이수프 - 1 , 토 마토파스타-1";
         setIn(allFood);
-        List<String> strings = inputView.parseInputToOrders();
+        List<String> strings = inputView.parseInputToList();
 
         assertThat(strings.get(0)).isEqualTo("양송이수프-1");
         assertThat(strings.get(1)).isEqualTo("토마토파스타-1");

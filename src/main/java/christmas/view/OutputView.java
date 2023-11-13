@@ -1,5 +1,8 @@
 package christmas.view;
 
+import static christmas.AppConfig.NO_DISCOUNT;
+
+import christmas.AppConfig;
 import christmas.domain.EventBadge;
 import christmas.domain.benefit.Present;
 import christmas.model.OrderResult;
@@ -7,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private static final int PRESENT_AMOUNT = 1;
-    private static final int NO_DISCOUNT = 0;
     private static final int NEGATIVE_SIGN = -1;
     private static final String NEXT_LINE = "\n";
     private static final String NOTHING_FORMAT = "없음";
@@ -60,9 +62,13 @@ public class OutputView {
         return result.givePresent().equals(Present.NOTHING);
     }
 
+    private boolean isNoDiscount() {
+        return result.allOfDiscount() == NO_DISCOUNT;
+    }
+
     public String toStringAllOfDiscount() {
         if (isNoDiscount()) {
-            return PAYMENT_FORMAT.formatted(NO_DISCOUNT);
+            return PAYMENT_FORMAT.formatted(AppConfig.NO_DISCOUNT);
         }
         return result.getDiscountPolicies().stream()
                 .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)
@@ -73,11 +79,6 @@ public class OutputView {
                         ))
                 .collect(Collectors.joining(NEXT_LINE));
     }
-
-    private boolean isNoDiscount() {
-        return result.allOfDiscount() == NO_DISCOUNT;
-    }
-
     public String toStringAllOfBenefitList() {
         Present present = result.givePresent();
         String allOfDiscount = toStringAllOfDiscount();

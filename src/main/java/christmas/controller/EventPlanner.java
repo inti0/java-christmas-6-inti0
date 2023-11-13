@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class EventPlanner {
     private final InputView inputView;
-
     public EventPlanner(InputView inputView) {
         this.inputView = inputView;
     }
@@ -35,10 +34,11 @@ public class EventPlanner {
     private Map<Food, Integer> processOrder() {
         while (true) {
             try {
-                List<String> strings = inputView.parseInputToOrders();
-                OrderManager orderManger = AppConfig.orderManger(strings);
+                List<String> strings = inputView.parseInputToList();
+                OrderManager orderManger = AppConfig.orderManager(strings);
                 OrderReceiver orderReceiver = orderManger.handleOrder();
                 Map<Food, Integer> orders = orderReceiver.getOrders();
+
                 return orders;
             } catch (IllegalArgumentException exception) {
                 inputView.OrderErrorMessage();

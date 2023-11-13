@@ -35,12 +35,12 @@ public class InputView {
         return date;
     }
 
-    public List<String> parseInputToOrders(){
+    public List<String> parseInputToList(){
         orderGreetMessage();
         return parseList();
     }
 
-    private static void orderGreetMessage() {
+    private void orderGreetMessage() {
         System.out.println("총주문 금액 10,000원 이상부터 이벤트가 적용됩니다. \n" +
                 "음료만 주문 시, 주문할 수 없습니다. \n" +
                 "메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다. \n" +

@@ -44,6 +44,23 @@ public class DayOfWeekDiscountTest {
     }
 
     @ParameterizedTest
+    @EnumSource(value = DayOfWeek.class, names = {"SUNDAY", "FRIDAY"})
+    @DisplayName("요일할인을 받지 못하면 0을 반환한다.")
+    void 요일할인_해당없음(DayOfWeek dayOfWeek){
+        LocalDate localDate = LocalDate.now();
+        DayOfWeek day = DayOfWeek.from(dayOfWeek);
+        LocalDate weekday = localDate.with(day);
+
+        orders.clear();
+        orders.put(Food.CAESAR_SALAD,5);
+
+        DayOfWeekDiscount dayOfWeekDiscount = new DayOfWeekDiscount(orders, weekday);
+        int discount = dayOfWeekDiscount.discountAmount();
+
+        assertThat(discount).isEqualTo(0);
+    }
+
+    @ParameterizedTest
     @EnumSource(value = DayOfWeek.class, names = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"})
     @DisplayName("평일(금토 제외)엔 디저트가 할인된다.")
     void 요일할인_평일(DayOfWeek dayOfWeek){

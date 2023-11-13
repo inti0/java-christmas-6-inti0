@@ -50,8 +50,7 @@ public class OutputViewTest {
 
     @Test
     void 혜택내역_테스트() {
-
-
+        //OutputViewBenefitListTest 에서 테스트
     }
 
     @Test

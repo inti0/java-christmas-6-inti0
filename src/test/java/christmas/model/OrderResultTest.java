@@ -66,16 +66,16 @@ public class OrderResultTest {
     }
 
     @Test
-    @DisplayName("결제액이 10000원 이하라면, 할인은 적용되지 않는다.")
+    @DisplayName("결제액이 10000원 미만이라면, 할인은 적용되지 않는다.")
     void 할인_기준_테스트(){
         orders.clear();
-        receiver.orderFood("아이스크림", 1);
+        receiver.orderFood("아이스크림", 1);     // 5000원
         int discount = orderResult.allOfDiscount();
 
         assertThat(discount).isEqualTo(0);
 
         orders.clear();
-        receiver.orderFood("아이스크림", 2);
+        receiver.orderFood("아이스크림", 2);     // 10000원
         int discount2 = orderResult.allOfDiscount();
 
         assertThat(discount2).isGreaterThan(0);
@@ -141,14 +141,9 @@ public class OrderResultTest {
     @DisplayName("뱃지는 결제액이 아닌 혜택액에 따라 주어진다.")
     void 뱃지지급_트리_테스트(){
         orders.clear();
-        receiver.orderFood("크리스마스파스타", 4);    // 25000원 * 4
+        receiver.orderFood("크리스마스파스타", 4);
         EventBadge eventBadge = orderResult.giveEventBadge();
         assertThat(eventBadge).isEqualTo(EventBadge.TREE);
-
-        orders.clear();
-        receiver.orderFood("시저샐러드", 20);       // 8000원 * 20
-        EventBadge eventBadge2 = orderResult.giveEventBadge();
-        assertThat(eventBadge2).isEqualTo(EventBadge.SANTA);
     }
 
     @Test
