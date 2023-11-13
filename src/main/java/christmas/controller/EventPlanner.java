@@ -36,7 +36,7 @@ public class EventPlanner {
         while (true) {
             try {
                 List<String> strings = inputView.parseInputToOrders();
-                OrderManager orderManger = new OrderManager(strings);
+                OrderManager orderManger = AppConfig.orderManger(strings);
                 OrderReceiver orderReceiver = orderManger.handleOrder();
                 Map<Food, Integer> orders = orderReceiver.getOrders();
                 return orders;
@@ -47,14 +47,14 @@ public class EventPlanner {
     }
 
     private OrderResult getResult(LocalDate bookDate, Map<Food, Integer> orders) {
-        DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(orders, bookDate);
+        DiscountPolicyFactory discountPolicyFactory = AppConfig.discountPolicyFactory(bookDate, orders);
         List<DiscountPolicy> discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
         return new OrderResult(orders, discountPolicies);
     }
 
     private void printBill(OrderResult orderResult) {
-        OutputView outputView = new OutputView(orderResult);
+        OutputView outputView = AppConfig.outputView(orderResult);
         outputView.print();
     }
 }
