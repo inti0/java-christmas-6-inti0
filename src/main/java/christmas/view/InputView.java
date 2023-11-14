@@ -8,6 +8,7 @@ public class InputView {
     private static final int FIRST_DATE = 1;
     private static final int LAST_DATE = 31;
     private static final int ORDER_MAX_RANGE = 20;
+    private static final String ERROR_PREFIX = "[ERROR]";
     private static final String INPUT_DELIMITER = ",";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
@@ -19,7 +20,7 @@ public class InputView {
             try {
                 return parseDate();
             } catch (IllegalArgumentException exception) {
-                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                System.out.println(ERROR_PREFIX + " 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -28,7 +29,7 @@ public class InputView {
         String input = Console.readLine();
         int date = Integer.parseInt(input.trim());
 
-        if(date > LAST_DATE || date < FIRST_DATE) {
+        if (date > LAST_DATE || date < FIRST_DATE) {
             throw new IllegalArgumentException();
         }
 
@@ -42,14 +43,15 @@ public class InputView {
                 "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
     }
 
-    public List<String> parseInputToList(){
+    public List<String> parseInputToList() {
         String orderLine = Console.readLine();
         orderLine = orderLine.replace(BLANK, EMPTY);
         String[] strings = orderLine.split(INPUT_DELIMITER, ORDER_MAX_RANGE);
 
         return List.of(strings);
     }
+
     public void OrderErrorMessage() {
-        System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        System.out.println(ERROR_PREFIX + " 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 }

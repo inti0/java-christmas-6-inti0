@@ -14,6 +14,7 @@ public class OrderReceiver {
         Food menu = Food.findMenuByName(inputName);
         checkAlreadyOrdered(menu);
         validateOrderSize(amount);
+
         orders.put(menu, amount);
     }
 
