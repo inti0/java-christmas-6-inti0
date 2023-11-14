@@ -1,6 +1,5 @@
 package christmas.domain.benefit.discount;
 
-import christmas.domain.benefit.discount.DDayDiscount;
 import java.time.LocalDate;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +12,9 @@ public class DDayDiscountTest {
 
     @Test
     @DisplayName("1일에 1000원 이후 하루가 지날때마다 100원씩 증가한다.")
-    void 디_데이_할인(){
+    void 디_데이_할인() {
         localDate1 = LocalDate.of(2023, 12, 1);
-        localDate2 = LocalDate.of(2023,12,25);
+        localDate2 = LocalDate.of(2023, 12, 25);
         DDayDiscount dDayDiscount1 = new DDayDiscount(localDate1);
         DDayDiscount dDayDiscount2 = new DDayDiscount(localDate2);
 
@@ -28,9 +27,9 @@ public class DDayDiscountTest {
 
     @Test
     @DisplayName("26일 이후엔 적용되지 않는다.")
-    void 디_데이_할인2(){
+    void 디_데이_할인2() {
         localDate1 = LocalDate.of(2023, 12, 26);
-        localDate2 = LocalDate.of(2023,12,31);
+        localDate2 = LocalDate.of(2023, 12, 31);
         DDayDiscount dDayDiscount1 = new DDayDiscount(localDate1);
         DDayDiscount dDayDiscount2 = new DDayDiscount(localDate2);
 

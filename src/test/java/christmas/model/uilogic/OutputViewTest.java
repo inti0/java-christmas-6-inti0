@@ -1,4 +1,4 @@
-package christmas.uilogic;
+package christmas.model.uilogic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +19,8 @@ public class OutputViewTest {
     void 주문출력_테스트() {
         Map<Food, Integer> orders = Map.of(
                 Food.TAPAS, 1,
-                Food.CHAMPAGNE, 2);
+                Food.CHAMPAGNE, 2
+        );
         Mockito.when(orderResult.getOrders()).thenReturn(orders);
 
         String string = outputView.toStringOrders();

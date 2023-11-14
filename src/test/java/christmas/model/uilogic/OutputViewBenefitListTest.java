@@ -1,10 +1,7 @@
-package christmas.uilogic;
+package christmas.model.uilogic;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.test.Assertions;
-import camp.nextstep.edu.missionutils.test.NsTest;
 import christmas.domain.benefit.Present;
 import christmas.domain.benefit.discount.DiscountPolicyFactory;
 import christmas.domain.order.Food;
@@ -20,7 +17,7 @@ public class OutputViewBenefitListTest {
 
     LocalDate localDate = LocalDate.of(2023, 12, 26);
     Map<Food, Integer> orders = new EnumMap<Food, Integer>(Food.class);
-    DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(orders, localDate);
+    DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);
     OrderResult orderResult = new OrderResult(orders, discountPolicyFactory.createDiscountPolicies());
     OutputView outputView = new OutputView(orderResult);
 

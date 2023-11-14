@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 public class DiscountPolicyFactory {
-    private final Map<Food, Integer> orders;
     private final LocalDate bookDate;
+    private final Map<Food, Integer> orders;
 
-    public DiscountPolicyFactory(Map<Food, Integer> orders, LocalDate bookDate) {
-        this.orders = orders;
+    public DiscountPolicyFactory(LocalDate bookDate, Map<Food, Integer> orders) {
         this.bookDate = bookDate;
+        this.orders = orders;
     }
 
     public List<DiscountPolicy> createDiscountPolicies() {
-        DiscountPolicy dayOfWeekDiscount = new DayOfWeekDiscount(orders, bookDate);
+        DiscountPolicy dayOfWeekDiscount = new DayOfWeekDiscount(bookDate, orders);
         DiscountPolicy dDayDiscount = new DDayDiscount(bookDate);
         DiscountPolicy specialDayDiscount = new SpecialDayDiscount(bookDate);
 

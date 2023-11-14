@@ -1,4 +1,4 @@
-package christmas.uilogic;
+package christmas.model.uilogic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,7 +18,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
 
-    InputView inputView = AppConfig.inputView();
+    InputView inputView = new InputView();
 
     @AfterEach
     void closeConsole() {

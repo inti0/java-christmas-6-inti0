@@ -16,6 +16,7 @@ public enum EventBadge {
         this.name = name;
         this.condition = condition;
     }
+
     public String getName() {
         return name;
     }

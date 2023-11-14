@@ -8,12 +8,12 @@ import java.util.Map;
 
 public class DayOfWeekDiscount implements DiscountPolicy {
     private static final int DAY_DISCOUNT = 2023;
-    private final Map<Food, Integer> orders;
     private final LocalDate localDate;
+    private final Map<Food, Integer> orders;
 
-    public DayOfWeekDiscount(Map<Food, Integer> orders, LocalDate localDate) {
-        this.orders = orders;
+    public DayOfWeekDiscount(LocalDate localDate, Map<Food, Integer> orders) {
         this.localDate = localDate;
+        this.orders = orders;
     }
 
     public int discountAmount() {

@@ -1,7 +1,5 @@
 package christmas.domain.benefit.discount;
 
-import christmas.domain.benefit.discount.DiscountPolicy;
-import christmas.domain.benefit.discount.DiscountPolicyFactory;
 import christmas.domain.order.Food;
 import christmas.domain.order.OrderReceiver;
 import java.time.LocalDate;
@@ -25,7 +23,7 @@ public class DiscountFactoryTest {
         orders = new HashMap<>();
         receiver = new OrderReceiver(orders);
         localDate = LocalDate.of(2023, 12, 10);      // 일요일
-        discountPolicyFactory = new DiscountPolicyFactory(orders,localDate);
+        discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);
         discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
         receiver.orderFood("시저샐러드", 3);
@@ -33,6 +31,7 @@ public class DiscountFactoryTest {
         receiver.orderFood("아이스크림", 5);
         receiver.orderFood("샴페인", 6);
     }
+
     @Test
     void 할인정책_종합_테스트() {
         int discountAmount = discountPolicies.stream()

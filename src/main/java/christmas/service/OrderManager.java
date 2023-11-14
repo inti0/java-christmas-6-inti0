@@ -1,7 +1,9 @@
 package christmas.service;
 
 import christmas.AppConfig;
+import christmas.domain.order.Food;
 import christmas.domain.order.OrderReceiver;
+import java.util.EnumMap;
 import java.util.List;
 
 public class OrderManager {
@@ -20,7 +22,7 @@ public class OrderManager {
     }
 
     private OrderReceiver createValidOrder() {
-        OrderReceiver orderReceiver = AppConfig.orderReceiver();
+        OrderReceiver orderReceiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
 
         for (String string : menuAndAmount) {
             String[] split = string.split(ORDER_DELIMITER, UNIT_ORDER_SIZE);

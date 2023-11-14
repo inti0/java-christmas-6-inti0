@@ -2,16 +2,18 @@ package christmas.domain.benefit;
 
 public enum Present {
 
-    CHAMPAGNE(120_000, 25_000, "샴페인"),
-    NOTHING(0, 0, "없음");
+    CHAMPAGNE(120_000, 25_000, "샴페인", 1),
+    NOTHING(0, 0, "없음", 0);
     private final int condition;
     private final int price;
     private final String item;
+    private final int amount;
 
-    private Present(int condition, int price, String item) {
+    private Present(int condition, int price, String item, int amount) {
         this.condition = condition;
         this.price = price;
         this.item = item;
+        this.amount = amount;
     }
 
     static public Present selectPresent(int originalPrice) {
@@ -27,5 +29,9 @@ public enum Present {
 
     public String getItem() {
         return item;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

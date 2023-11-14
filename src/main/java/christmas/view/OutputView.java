@@ -55,7 +55,7 @@ public class OutputView {
         if (isNoPresent()) {
             return NOTHING_FORMAT;
         }
-        return NAME_AND_AMOUNT.formatted(present.getItem(), PRESENT_AMOUNT);
+        return NAME_AND_AMOUNT.formatted(present.getItem(), present.getAmount());
     }
 
     private boolean isNoPresent() {
@@ -76,9 +76,10 @@ public class OutputView {
                         DISCOUNT_FORMAT,
                         discountPolicy.discountSource(),
                         NEGATIVE_SIGN * discountPolicy.discountAmount()
-                        ))
+                ))
                 .collect(Collectors.joining(NEXT_LINE));
     }
+
     public String toStringAllOfBenefitList() {
         Present present = result.givePresent();
         String allOfDiscount = toStringAllOfDiscount();

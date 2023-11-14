@@ -6,7 +6,6 @@ public class OrderReceiver {
     private static final int ORDER_AMOUNT_UNIT_MIN = 1;
     private static final int ORDER_AMOUNT_SUM_MAX = 20;
     private Map<Food, Integer> orders;
-
     public OrderReceiver(Map<Food, Integer> orders) {
         this.orders = orders;
     }
