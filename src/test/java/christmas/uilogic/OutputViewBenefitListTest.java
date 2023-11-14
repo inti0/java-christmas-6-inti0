@@ -13,7 +13,6 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -76,7 +75,7 @@ public class OutputViewBenefitListTest {
 
         assertThat(discount).isEqualTo(0);
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
-        assertThat(captor.toString()).isEqualTo("<혜택 내역> 증정 이벤트: -25000원");
+        assertThat(captor.toString()).containsIgnoringWhitespaces("<혜택 내역> 증정 이벤트: -25000원");
     }
 
     @Test

@@ -7,16 +7,9 @@ import christmas.domain.order.Food;
 import java.util.List;
 import java.util.Map;
 
-public class OrderResult {
+public record OrderResult(Map<Food, Integer> orders, List<DiscountPolicy> discountPolicies) {
     private static final int NO_DISCOUNT = 0;
     private static final int DISCOUNT_MIN_RANGE = 10000;
-    private final Map<Food, Integer> orders;
-    private final List<DiscountPolicy> discountPolicies;
-
-    public OrderResult(Map<Food, Integer> orders, List<DiscountPolicy> discountPolicies) {
-        this.orders = orders;
-        this.discountPolicies = discountPolicies;
-    }
 
     public int beforeDiscountSum() {
         return orders.entrySet().stream()
@@ -48,13 +41,5 @@ public class OrderResult {
 
     public int allOfBenefitAmount() {
         return givePresent().getPrice() + allOfDiscount();
-    }
-
-    public Map<Food, Integer> getOrders() {
-        return orders;
-    }
-
-    public List<DiscountPolicy> getDiscountPolicies() {
-        return discountPolicies;
     }
 }

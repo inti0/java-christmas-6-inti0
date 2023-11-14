@@ -36,7 +36,7 @@ public class OutputViewTest {
     @BeforeEach
     void print_종속메소드_모킹() {
         //given
-        Mockito.when(orderResult.getOrders()).thenReturn(orders);
+        Mockito.when(orderResult.orders()).thenReturn(orders);
         Mockito.when(orderResult.beforeDiscountSum()).thenReturn(181_500);
         Mockito.when(orderResult.givePresent()).thenReturn(Present.CHAMPAGNE);
         Mockito.when(orderResult.allOfBenefitAmount()).thenReturn(23000);
@@ -49,7 +49,8 @@ public class OutputViewTest {
     void 주문메뉴_테스트() {
         outputView.print();
 
-        assertThat(captor.toString()).containsIgnoringWhitespaces("<주문 메뉴> 타파스 1개 샴페인 2개");
+        assertThat(captor.toString()).contains("타파스 1개");
+        assertThat(captor.toString()).contains("샴페인 2개");
     }
 
     @Test

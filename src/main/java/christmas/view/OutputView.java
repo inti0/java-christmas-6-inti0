@@ -39,17 +39,17 @@ public class OutputView {
         System.out.println(toStringEventBadge());
     }
 
-    public String toStringOrders() {
-        return result.getOrders().entrySet().stream()
+    private String toStringOrders() {
+        return result.orders().entrySet().stream()
                 .map(entry -> NAME_AND_AMOUNT.formatted(entry.getKey().getName(), entry.getValue()))
                 .collect(Collectors.joining(NEXT_LINE));
     }
 
-    public String toStringPaymentBeforeDiscount() {
+    private String toStringPaymentBeforeDiscount() {
         return PAYMENT_FORMAT.formatted(result.beforeDiscountSum());
     }
 
-    public String toStringPresent() {
+    private String toStringPresent() {
         Present present = result.givePresent();
         if (isNoPresent()) {
             return NOTHING_FORMAT;
@@ -65,7 +65,7 @@ public class OutputView {
         return result.allOfDiscount() == NO_DISCOUNT;
     }
 
-    public String toStringAllOfBenefitList() {
+    private String toStringAllOfBenefitList() {
         Present present = result.givePresent();
         String allOfDiscount = toStringAllOfDiscount();
 
@@ -85,7 +85,7 @@ public class OutputView {
         if (isNoDiscount()) {
             return PAYMENT_FORMAT.formatted(AppConfig.NO_DISCOUNT);
         }
-        return result.getDiscountPolicies().stream()
+        return result.discountPolicies().stream()
                 .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)
                 .map(discountPolicy -> String.format(
                         DISCOUNT_FORMAT,
@@ -95,15 +95,15 @@ public class OutputView {
                 .collect(Collectors.joining(NEXT_LINE));
     }
 
-    public String toStringAllOfBenefitAmount() {
+    private String toStringAllOfBenefitAmount() {
         return PAYMENT_FORMAT.formatted(NEGATIVE_SIGN * result.allOfBenefitAmount());
     }
 
-    public String toStringPaymentAfterDiscount() {
+    private String toStringPaymentAfterDiscount() {
         return PAYMENT_FORMAT.formatted(result.paymentAfterDiscount());
     }
 
-    public String toStringEventBadge() {
+    private String toStringEventBadge() {
         EventBadge eventBadge = result.giveEventBadge();
         return eventBadge.getName();
     }
