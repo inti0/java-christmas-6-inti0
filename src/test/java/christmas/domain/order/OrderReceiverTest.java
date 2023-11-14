@@ -18,28 +18,20 @@ class OrderReceiverTest {
     }
 
     @Test
-    void 주문테스트1() {
-        receiver.orderFood("티본스테이크", 5);
-        receiver.orderFood("제로콜라", 15);
+    void 주문테스트() {
+        receiver.orderFood(Food.T_BONE_STEAK, 5);
+        receiver.orderFood(Food.ZERO_COLA, 15);
 
         int size = receiver.getOrders().size();
 
         assertThat(size).isEqualTo(2);
     }
 
-    @DisplayName("주문 중 이름이 틀리면 오류가 발생한다.")
-    @Test
-    void 주문_이름_오류() {
-        assertThatThrownBy(() ->
-                receiver.orderFood("티본 스테이크", 7))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("주문 중 주문 수량이 잘못 되면 오류가 발생한다.")
     @Test
     void 주문량_최소_테스트() {
         assertThatThrownBy(() ->
-                receiver.orderFood("티본스테이크", 0))
+                receiver.orderFood(Food.T_BONE_STEAK, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,7 +39,7 @@ class OrderReceiverTest {
     @Test
     void 주문량_최대_테스트() {
         assertThatThrownBy(() ->
-                receiver.orderFood("티본스테이크", 21))
+                receiver.orderFood(Food.T_BONE_STEAK, 21))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -55,8 +47,8 @@ class OrderReceiverTest {
     @Test
     void 메뉴총량_테스트() {
         assertThatThrownBy(() -> {
-            receiver.orderFood("티본스테이크", 4);
-            receiver.orderFood("제로콜라", 17);
+            receiver.orderFood(Food.T_BONE_STEAK, 4);
+            receiver.orderFood(Food.ZERO_COLA, 17);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,18 +56,18 @@ class OrderReceiverTest {
     @Test
     void 중복주문_테스트() {
         assertThatThrownBy(() -> {
-            receiver.orderFood("티본스테이크", 4);
-            receiver.orderFood("레드와인", 4);
-            receiver.orderFood("티본스테이크", 3);
+            receiver.orderFood(Food.T_BONE_STEAK, 4);
+            receiver.orderFood(Food.RED_WINE, 4);
+            receiver.orderFood(Food.T_BONE_STEAK, 3);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("음료만 주문했는지 확인할 수 있다. 음료만 있다면 true")
     @Test
     void 음료_테스트() {
-        receiver.orderFood("레드와인", 5);
-        receiver.orderFood("제로콜라", 3);
-        receiver.orderFood("샴페인", 3);
+        receiver.orderFood(Food.RED_WINE, 5);
+        receiver.orderFood(Food.ZERO_COLA, 3);
+        receiver.orderFood(Food.CHAMPAGNE, 3);
 
         boolean onlyDrink = receiver.isOrderContainOnlyDrink();
 
@@ -85,9 +77,9 @@ class OrderReceiverTest {
     @DisplayName("음료만 주문했는지 확인할 수 있다. 음료 말고도 있다면 false")
     @Test
     void 음료_테스트2() {
-        receiver.orderFood("티본스테이크", 5);
-        receiver.orderFood("제로콜라", 3);
-        receiver.orderFood("샴페인", 3);
+        receiver.orderFood(Food.T_BONE_STEAK, 5);
+        receiver.orderFood(Food.ZERO_COLA, 3);
+        receiver.orderFood(Food.CHAMPAGNE, 3);
 
         boolean onlyDrink = receiver.isOrderContainOnlyDrink();
 

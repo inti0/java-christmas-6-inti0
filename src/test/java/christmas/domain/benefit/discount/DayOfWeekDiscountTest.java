@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.order.Food;
 import christmas.domain.order.OrderReceiver;
+import christmas.service.OrderManager;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,10 +25,10 @@ public class DayOfWeekDiscountTest {
     void 생성자주입() {
         orders = new HashMap<>();
         receiver = new OrderReceiver(orders);
-        orders.put(Food.TAPAS, 1);
-        orders.put(Food.T_BONE_STEAK, 2);       // 메인
-        orders.put(Food.CHOCO_CAKE, 3);         // 디저트
-        orders.put(Food.CHAMPAGNE, 4);
+        receiver.orderFood(Food.TAPAS, 1);
+        receiver.orderFood(Food.T_BONE_STEAK, 2);       // 메인
+        receiver.orderFood(Food.CHOCO_CAKE, 3);         // 디저트
+        receiver.orderFood(Food.CHAMPAGNE, 4);
     }
 
     @ParameterizedTest
@@ -76,15 +78,16 @@ public class DayOfWeekDiscountTest {
 
     @Test
     void 리시버_요일할인_종합테스트() {
-        orders.clear();
-        receiver.orderFood("양송이수프", 4);
-        receiver.orderFood("바비큐립", 3);
-        receiver.orderFood("아이스크림", 2);
-        receiver.orderFood("레드와인", 1);
-
+        OrderManager orderManager = new OrderManager(List.of(
+                "양송이수프-4", "바비큐립-3",
+                "아이스크림-2", "레드와인-1"
+        ));
+        OrderReceiver orderReceiver = orderManager.handleOrder();
+        Map<Food, Integer> orders = orderReceiver.getOrders();
         LocalDate localDate = LocalDate.now();
         DayOfWeek day = DayOfWeek.from(DayOfWeek.MONDAY);
         LocalDate weekday = localDate.with(day);
+
         DayOfWeekDiscount dayOfWeekDiscount = new DayOfWeekDiscount(weekday, orders);
         int discount = dayOfWeekDiscount.discountAmount();
 

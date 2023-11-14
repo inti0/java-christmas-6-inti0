@@ -26,10 +26,10 @@ public class DiscountFactoryTest {
         discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);
         discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
-        receiver.orderFood("시저샐러드", 3);
-        receiver.orderFood("해산물파스타", 4);
-        receiver.orderFood("아이스크림", 5);
-        receiver.orderFood("샴페인", 6);
+        receiver.orderFood(Food.CAESAR_SALAD, 3);
+        receiver.orderFood(Food.SEAFOOD_PASTA, 4);
+        receiver.orderFood(Food.ICE_CREAM, 5);
+        receiver.orderFood(Food.CHAMPAGNE, 6);
     }
 
     @Test

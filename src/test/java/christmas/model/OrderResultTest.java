@@ -34,10 +34,10 @@ public class OrderResultTest {
         discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);
         discountPolicies = discountPolicyFactory.createDiscountPolicies();
 
-        receiver.orderFood("시저샐러드", 3);
-        receiver.orderFood("해산물파스타", 4);
-        receiver.orderFood("아이스크림", 10);
-        receiver.orderFood("샴페인", 3);
+        receiver.orderFood(Food.CAESAR_SALAD, 3);
+        receiver.orderFood(Food.SEAFOOD_PASTA, 4);
+        receiver.orderFood(Food.ICE_CREAM, 10);
+        receiver.orderFood(Food.CHAMPAGNE, 3);
 
         orderResult = new OrderResult(orders, discountPolicies);
     }
@@ -68,13 +68,13 @@ public class OrderResultTest {
     @DisplayName("결제액이 10000원 미만이라면, 할인은 적용되지 않는다.")
     void 할인_기준_테스트() {
         orders.clear();
-        receiver.orderFood("아이스크림", 1);     // 5000원
+        receiver.orderFood(Food.ICE_CREAM, 1);     // 5000원
         int discount = orderResult.allOfDiscount();
 
         assertThat(discount).isEqualTo(0);
 
         orders.clear();
-        receiver.orderFood("아이스크림", 2);     // 10000원
+        receiver.orderFood(Food.ICE_CREAM, 2);     // 10000원
         int discount2 = orderResult.allOfDiscount();
 
         assertThat(discount2).isGreaterThan(0);
@@ -90,7 +90,7 @@ public class OrderResultTest {
     @DisplayName("증정품은 할인 적용전 금액이 12만원 이상일 때만 주어진다.")
     void 증정품_기준_테스트() {
         orders.clear();
-        receiver.orderFood("시저샐러드", 14);    // 8000 * 14 < 120000
+        receiver.orderFood(Food.CAESAR_SALAD, 14);    // 8000 * 14 < 120000
         Present present = orderResult.givePresent();
         assertThat(present).isEqualTo(Present.NOTHING);
     }
@@ -99,7 +99,7 @@ public class OrderResultTest {
     @DisplayName("증정품은 할인 적용전 금액이 12만원 이상일 때만 주어진다.")
     void 증정품_기준_테스트2() {
         orders.clear();
-        receiver.orderFood("시저샐러드", 15);    // 8000 * 15 = 120000
+        receiver.orderFood(Food.CAESAR_SALAD, 15);    // 8000 * 15 = 120000
         Present present2 = orderResult.givePresent();
         assertThat(present2).isEqualTo(Present.CHAMPAGNE);
 
@@ -129,13 +129,13 @@ public class OrderResultTest {
     @DisplayName("뱃지는 결제액이 아닌 혜택액에 따라 주어진다.")
     void 뱃지지급_없음_별_테스트() {
         orders.clear();
-        receiver.orderFood("제로콜라", 18);
-        receiver.orderFood("크리스마스파스타", 1);
+        receiver.orderFood(Food.ZERO_COLA, 18);
+        receiver.orderFood(Food.CHRISTMAS_PASTA, 1);
         EventBadge eventBadge = orderResult.giveEventBadge();
         assertThat(eventBadge).isEqualTo(EventBadge.NOTHING);
 
         orders.clear();
-        receiver.orderFood("크리스마스파스타", 2);
+        receiver.orderFood(Food.CHRISTMAS_PASTA, 2);
         EventBadge eventBadge2 = orderResult.giveEventBadge();
         assertThat(eventBadge2).isEqualTo(EventBadge.STAR);
     }
@@ -144,7 +144,7 @@ public class OrderResultTest {
     @DisplayName("뱃지는 결제액이 아닌 혜택액에 따라 주어진다.")
     void 뱃지지급_트리_테스트() {
         orders.clear();
-        receiver.orderFood("크리스마스파스타", 4);
+        receiver.orderFood(Food.CHRISTMAS_PASTA, 4);
         EventBadge eventBadge = orderResult.giveEventBadge();
         assertThat(eventBadge).isEqualTo(EventBadge.TREE);
     }
@@ -153,7 +153,7 @@ public class OrderResultTest {
     @DisplayName("뱃지는 혜택이 기준이므로 할인이 적더라도 샴페인을 받으면 산타를 받게 된다.")
     void 뱃지지급_기준_테스트() {
         orders.clear();
-        receiver.orderFood("시저샐러드", 20);
+        receiver.orderFood(Food.CAESAR_SALAD, 20);
 
         Present present = orderResult.givePresent();
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
