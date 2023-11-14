@@ -1,10 +1,10 @@
 package christmas.domain.order;
 
+import christmas.AppConfig;
 import java.util.Map;
 
 public class OrderReceiver {
     private static final int ORDER_AMOUNT_UNIT_MIN = 1;
-    private static final int ORDER_AMOUNT_SUM_MAX = 20;
     private Map<Food, Integer> orders;
     public OrderReceiver(Map<Food, Integer> orders) {
         this.orders = orders;
@@ -12,7 +12,7 @@ public class OrderReceiver {
 
     public void orderFood(Food menu, int amount) {
         checkAlreadyOrdered(menu);
-        validateOrderSize(amount);
+        validate(amount);
         orders.put(menu, amount);
     }
 
@@ -22,12 +22,12 @@ public class OrderReceiver {
         }
     }
 
-    private void validateOrderSize(int amount) {
+    private void validate(int amount) {
         validateUnit(amount);
         validateTotalOrder(amount);
     }
 
-    private static void validateUnit(int amount) {
+    private void validateUnit(int amount) {
         if (amount < ORDER_AMOUNT_UNIT_MIN) {
             throw new IllegalArgumentException();
         }
@@ -38,7 +38,7 @@ public class OrderReceiver {
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        if (total + amount > ORDER_AMOUNT_SUM_MAX) {
+        if (total + amount > AppConfig.ORDER_MAX_RANGE) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,4 +1,4 @@
-package christmas.model.uilogic;
+package christmas.uilogic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,9 +7,13 @@ import christmas.domain.benefit.discount.DiscountPolicyFactory;
 import christmas.domain.order.Food;
 import christmas.model.OrderResult;
 import christmas.view.OutputView;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +24,16 @@ public class OutputViewBenefitListTest {
     DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);
     OrderResult orderResult = new OrderResult(orders, discountPolicyFactory.createDiscountPolicies());
     OutputView outputView = new OutputView(orderResult);
+
+    PrintStream standardOut;
+    OutputStream captor;
+
+    @BeforeEach
+    protected final void init() {
+        standardOut = System.out;
+        captor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(captor));
+    }
 
     @BeforeEach
     void 저장소초기화() {
@@ -32,11 +46,11 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        String list = outputView.toStringAllOfBenefitList();
+        outputView.print();
 
         assertThat(discount).isEqualTo(0);
         assertThat(present).isEqualTo(Present.NOTHING);
-        assertThat(list).isEqualTo("없음");
+        assertThat(captor.toString()).containsIgnoringWhitespaces("<혜택 내역> 없음");
     }
 
     @Test
@@ -45,11 +59,11 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        String list = outputView.toStringAllOfBenefitList();
+        outputView.print();
 
         assertThat(discount).isEqualTo(2023 * 3);
         assertThat(present).isEqualTo(Present.NOTHING);
-        assertThat(list).isEqualTo("요일 할인: -6,069원");
+        assertThat(captor.toString()).containsIgnoringWhitespaces("<혜택 내역> 요일 할인: -6,069원");
     }
 
     @Test
@@ -58,11 +72,11 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        String list = outputView.toStringAllOfBenefitList();
+        outputView.print();
 
         assertThat(discount).isEqualTo(0);
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
-        assertThat(list).isEqualTo("증정 이벤트: -25000원");
+        assertThat(captor.toString()).isEqualTo("<혜택 내역> 증정 이벤트: -25000원");
     }
 
     @Test
@@ -72,11 +86,11 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        String list = outputView.toStringAllOfBenefitList();
+        outputView.print();
 
         assertThat(discount).isEqualTo(2023 * 3);
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
-        assertThat(list).contains("증정 이벤트: -25000원");
-        assertThat(list).contains("요일 할인: -6,069원");
+        assertThat(captor.toString()).containsIgnoringWhitespaces("<혜택 내역> 요일 할인: -6,069원"
+                + "증정 이벤트: -25000원");
     }
 }

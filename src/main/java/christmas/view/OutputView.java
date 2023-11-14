@@ -9,7 +9,6 @@ import christmas.model.OrderResult;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final int PRESENT_AMOUNT = 1;
     private static final int NEGATIVE_SIGN = -1;
     private static final String NEXT_LINE = "\n";
     private static final String NOTHING_FORMAT = "없음";
@@ -66,20 +65,6 @@ public class OutputView {
         return result.allOfDiscount() == NO_DISCOUNT;
     }
 
-    public String toStringAllOfDiscount() {
-        if (isNoDiscount()) {
-            return PAYMENT_FORMAT.formatted(AppConfig.NO_DISCOUNT);
-        }
-        return result.getDiscountPolicies().stream()
-                .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)
-                .map(discountPolicy -> String.format(
-                        DISCOUNT_FORMAT,
-                        discountPolicy.discountSource(),
-                        NEGATIVE_SIGN * discountPolicy.discountAmount()
-                ))
-                .collect(Collectors.joining(NEXT_LINE));
-    }
-
     public String toStringAllOfBenefitList() {
         Present present = result.givePresent();
         String allOfDiscount = toStringAllOfDiscount();
@@ -94,6 +79,20 @@ public class OutputView {
             return allOfDiscount;
         }
         return allOfDiscount + NEXT_LINE + PRESENT_BENEFIT_FORMAT.formatted(present.getPrice());
+    }
+
+    private String toStringAllOfDiscount() {
+        if (isNoDiscount()) {
+            return PAYMENT_FORMAT.formatted(AppConfig.NO_DISCOUNT);
+        }
+        return result.getDiscountPolicies().stream()
+                .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)
+                .map(discountPolicy -> String.format(
+                        DISCOUNT_FORMAT,
+                        discountPolicy.discountSource(),
+                        NEGATIVE_SIGN * discountPolicy.discountAmount()
+                ))
+                .collect(Collectors.joining(NEXT_LINE));
     }
 
     public String toStringAllOfBenefitAmount() {

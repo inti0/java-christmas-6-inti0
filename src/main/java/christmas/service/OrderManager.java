@@ -22,7 +22,7 @@ public class OrderManager {
         return orderReceiver;
     }
 
-    private void receiveOrder(OrderReceiver orderReceiver) {
+    private void receiveOrder(OrderReceiver orderReceiver) throws IllegalArgumentException{
         for (String string : menuAndAmount) {
             String[] split = string.split(ORDER_DELIMITER, UNIT_ORDER_SIZE);
             validateLength(split);
@@ -34,13 +34,13 @@ public class OrderManager {
         }
     }
 
-    private static void validateLength(String[] split) {
+    private void validateLength(String[] split) {
         if (split.length != UNIT_ORDER_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void checkOnlyDrink(OrderReceiver orderReceiver) {
+    private void checkOnlyDrink(OrderReceiver orderReceiver) {
         if (orderReceiver.isOrderContainOnlyDrink()) {
             throw new IllegalArgumentException();
         }
