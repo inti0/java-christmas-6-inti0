@@ -10,11 +10,9 @@ public class OrderReceiver {
         this.orders = orders;
     }
 
-    public void orderFood(String inputName, int amount) {
-        Food menu = Food.findMenuByName(inputName);
+    public void orderFood(Food menu, int amount) {
         checkAlreadyOrdered(menu);
         validateOrderSize(amount);
-
         orders.put(menu, amount);
     }
 

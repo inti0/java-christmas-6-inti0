@@ -16,20 +16,22 @@ public class OrderManager {
     }
 
     public OrderReceiver handleOrder() {
-        OrderReceiver orderReceiver = createValidOrder();
+        OrderReceiver orderReceiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
+        receiveOrder(orderReceiver);
         checkOnlyDrink(orderReceiver);
         return orderReceiver;
     }
 
-    private OrderReceiver createValidOrder() {
-        OrderReceiver orderReceiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
-
+    private void receiveOrder(OrderReceiver orderReceiver) {
         for (String string : menuAndAmount) {
             String[] split = string.split(ORDER_DELIMITER, UNIT_ORDER_SIZE);
             validateLength(split);
-            orderReceiver.orderFood(split[0], Integer.parseInt(split[1]));
+
+            Food menu = Food.findMenuByName(split[0]);
+            int amount = Integer.parseInt(split[1]);
+
+            orderReceiver.orderFood(menu, amount);
         }
-        return orderReceiver;
     }
 
     private static void validateLength(String[] split) {
