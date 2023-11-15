@@ -1,6 +1,6 @@
 package christmas.domain.benefit.discount;
 
-import christmas.AppConfig;
+import christmas.AppConstants;
 import java.time.LocalDate;
 
 public class DDayDiscount implements DiscountPolicy {
@@ -15,8 +15,8 @@ public class DDayDiscount implements DiscountPolicy {
     public int discountAmount() {
         int dayOfMonth = localDate.getDayOfMonth();
 
-        if (dayOfMonth > AppConfig.CHRISTMAS_DATE) {
-            return AppConfig.NO_DISCOUNT;
+        if (dayOfMonth > AppConstants.CHRISTMAS_DATE) {
+            return AppConstants.NO_DISCOUNT;
         }
         return dayOfMonth * DISCOUNT_INCREASE_PER_DAY + DISCOUNT_PRICE_DEFAULT;
     }

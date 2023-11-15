@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.AppConfig;
+import christmas.AppConstants;
 import christmas.domain.benefit.discount.DiscountPolicy;
 import christmas.domain.benefit.discount.DiscountPolicyFactory;
 import christmas.domain.order.Food;
@@ -29,7 +29,7 @@ public class EventPlanner {
 
     private LocalDate readBookDate() {
         int date = inputView.readDate();
-        return LocalDate.of(AppConfig.THIS_YEAR, AppConfig.THIS_MONTH, date);
+        return LocalDate.of(AppConstants.EVENT_YEAR, AppConstants.EVENT_MONTH, date);
     }
 
     private Map<Food, Integer> readOrder() {

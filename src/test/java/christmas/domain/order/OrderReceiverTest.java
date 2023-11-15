@@ -7,6 +7,8 @@ import java.util.EnumMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class OrderReceiverTest {
 
@@ -28,18 +30,11 @@ class OrderReceiverTest {
     }
 
     @DisplayName("주문 중 주문 수량이 잘못 되면 오류가 발생한다.")
-    @Test
-    void 주문량_최소_테스트() {
+    @ValueSource(ints = {0,21})
+    @ParameterizedTest
+    void 주문량_최소_테스트(int amount) {
         assertThatThrownBy(() ->
-                receiver.orderFood(Food.T_BONE_STEAK, 0))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("주문 중 주문 수량이 잘못 되면 오류가 발생한다.")
-    @Test
-    void 주문량_최대_테스트() {
-        assertThatThrownBy(() ->
-                receiver.orderFood(Food.T_BONE_STEAK, 21))
+                receiver.orderFood(Food.T_BONE_STEAK, amount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

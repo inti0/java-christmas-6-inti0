@@ -2,31 +2,33 @@ package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class EventBadgeTest {
 
-    @Test
-    void selectEventBadge() {
-        EventBadge eventBadge1 = EventBadge.selectEventBadge(3000);
-        EventBadge eventBadge2 = EventBadge.selectEventBadge(5000);
-        EventBadge eventBadge3 = EventBadge.selectEventBadge(9000);
+    @DisplayName("이벤트 뱃지는 5000, 10000, 20000에서 바뀐다.")
+    @MethodSource("eventBadge")
+    @ParameterizedTest
+    void selectEventBadge3(int benefitAmount, EventBadge eventBadge) {
+        EventBadge selectEventBadge = EventBadge.selectEventBadge(benefitAmount);
 
-        assertThat(eventBadge1).isEqualTo(EventBadge.NOTHING);
-        assertThat(eventBadge2).isEqualTo(EventBadge.STAR);
-        assertThat(eventBadge3).isEqualTo(EventBadge.STAR);
+        assertThat(selectEventBadge).isEqualTo(eventBadge);
     }
 
-    @Test
-    void selectEventBadge2() {
-        EventBadge eventBadge1 = EventBadge.selectEventBadge(10000);
-        EventBadge eventBadge2 = EventBadge.selectEventBadge(16000);
-        EventBadge eventBadge3 = EventBadge.selectEventBadge(20000);
-        EventBadge eventBadge4 = EventBadge.selectEventBadge(30000);
-
-        assertThat(eventBadge1).isEqualTo(EventBadge.TREE);
-        assertThat(eventBadge2).isEqualTo(EventBadge.TREE);
-        assertThat(eventBadge3).isEqualTo(EventBadge.SANTA);
-        assertThat(eventBadge4).isEqualTo(EventBadge.SANTA);
+    static Stream<Arguments> eventBadge() {
+        return Stream.of(
+                Arguments.of(0, EventBadge.NOTHING),
+                Arguments.of(4999, EventBadge.NOTHING),
+                Arguments.of(5000, EventBadge.STAR),
+                Arguments.of(9999, EventBadge.STAR),
+                Arguments.of(10000, EventBadge.TREE),
+                Arguments.of(19999, EventBadge.TREE),
+                Arguments.of(20000, EventBadge.SANTA),
+                Arguments.of(30000, EventBadge.SANTA)
+        );
     }
 }

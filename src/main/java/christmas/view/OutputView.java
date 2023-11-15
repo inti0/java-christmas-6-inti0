@@ -1,8 +1,8 @@
 package christmas.view;
 
-import static christmas.AppConfig.NO_DISCOUNT;
+import static christmas.AppConstants.NO_DISCOUNT;
 
-import christmas.AppConfig;
+import christmas.AppConstants;
 import christmas.domain.EventBadge;
 import christmas.domain.benefit.Present;
 import christmas.model.OrderResult;
@@ -83,7 +83,7 @@ public class OutputView {
 
     private String toStringAllOfDiscount() {
         if (isNoDiscount()) {
-            return PAYMENT_FORMAT.formatted(AppConfig.NO_DISCOUNT);
+            return PAYMENT_FORMAT.formatted(AppConstants.NO_DISCOUNT);
         }
         return result.discountPolicies().stream()
                 .filter(discountPolicy -> discountPolicy.discountAmount() != NO_DISCOUNT)

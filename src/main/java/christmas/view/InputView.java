@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.AppConfig;
+import christmas.AppConstants;
 import java.util.List;
 
 public class InputView {
@@ -46,7 +46,7 @@ public class InputView {
     public List<String> parseInputToList() {
         String orderLine = Console.readLine();
         orderLine = orderLine.replace(BLANK, EMPTY);
-        String[] strings = orderLine.split(INPUT_DELIMITER, AppConfig.ORDER_MAX_RANGE);
+        String[] strings = orderLine.split(INPUT_DELIMITER, AppConstants.ORDER_MAX_RANGE);
 
         return List.of(strings);
     }

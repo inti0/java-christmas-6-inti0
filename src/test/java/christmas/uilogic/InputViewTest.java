@@ -23,6 +23,11 @@ public class InputViewTest {
     void closeConsole() {
         Console.close();
     }
+    private static void setIn(String input) {
+        byte[] bytes = input.getBytes();
+        InputStream inputStream = new ByteArrayInputStream(bytes);
+        System.setIn(inputStream);
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "21 ", "  31 ", "25",})
@@ -50,11 +55,5 @@ public class InputViewTest {
 
         assertThat(strings.get(0)).isEqualTo("양송이수프-1");
         assertThat(strings.get(1)).isEqualTo("토마토파스타-1");
-    }
-
-    private static void setIn(String input) {
-        byte[] bytes = input.getBytes();
-        InputStream inputStream = new ByteArrayInputStream(bytes);
-        System.setIn(inputStream);
     }
 }

@@ -1,6 +1,5 @@
 package christmas.service;
 
-import christmas.AppConfig;
 import christmas.domain.order.Food;
 import christmas.domain.order.OrderReceiver;
 import java.util.EnumMap;
@@ -22,7 +21,7 @@ public class OrderManager {
         return orderReceiver;
     }
 
-    private void receiveOrder(OrderReceiver orderReceiver) throws IllegalArgumentException{
+    private void receiveOrder(OrderReceiver orderReceiver) throws IllegalArgumentException {
         for (String string : menuAndAmount) {
             String[] split = string.split(ORDER_DELIMITER, UNIT_ORDER_SIZE);
             validateLength(split);

@@ -1,6 +1,6 @@
 package christmas.domain.order;
 
-import christmas.AppConfig;
+import christmas.AppConstants;
 import java.util.Map;
 
 public class OrderReceiver {
@@ -38,7 +38,7 @@ public class OrderReceiver {
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        if (total + amount > AppConfig.ORDER_MAX_RANGE) {
+        if (total + amount > AppConstants.ORDER_MAX_RANGE) {
             throw new IllegalArgumentException();
         }
     }

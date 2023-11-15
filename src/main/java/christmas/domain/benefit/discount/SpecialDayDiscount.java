@@ -1,6 +1,6 @@
 package christmas.domain.benefit.discount;
 
-import christmas.AppConfig;
+import christmas.AppConstants;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
@@ -16,13 +16,13 @@ public class SpecialDayDiscount implements DiscountPolicy {
         if (isSpecialDay()) {
             return SPECIAL_DAY_DISCOUNT_PRICE;
         }
-        return AppConfig.NO_DISCOUNT;
+        return AppConstants.NO_DISCOUNT;
     }
 
     private boolean isSpecialDay() {
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
         int dayOfMonth = localDate.getDayOfMonth();
-        return dayOfWeek.equals(DayOfWeek.SUNDAY) || dayOfMonth == AppConfig.CHRISTMAS_DATE;
+        return dayOfWeek.equals(DayOfWeek.SUNDAY) || dayOfMonth == AppConstants.CHRISTMAS_DATE;
     }
 
     @Override

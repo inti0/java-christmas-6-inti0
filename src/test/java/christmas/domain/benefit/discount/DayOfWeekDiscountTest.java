@@ -77,7 +77,7 @@ public class DayOfWeekDiscountTest {
     }
 
     @Test
-    void 리시버_요일할인_종합테스트() {
+    void 요일할인_종합테스트() {
         OrderManager orderManager = new OrderManager(List.of(
                 "양송이수프-4", "바비큐립-3",
                 "아이스크림-2", "레드와인-1"
