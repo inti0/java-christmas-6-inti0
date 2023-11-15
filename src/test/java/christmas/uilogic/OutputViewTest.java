@@ -45,7 +45,7 @@ public class OutputViewTest {
 
     @Test
     void 주문메뉴_테스트() {
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).contains("타파스 1개");
         assertThat(captor.toString()).contains("샴페인 2개");
@@ -53,14 +53,14 @@ public class OutputViewTest {
 
     @Test
     void 할인전_가격_테스트() {
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<할인 전 총주문 금액>\n181,500원");
     }
 
     @Test
     void 증정메뉴_테스트() {
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<증정 메뉴>\n샴페인 1개");
     }
@@ -69,7 +69,7 @@ public class OutputViewTest {
     void 증정메뉴_없음_테스트() {
         Mockito.when(orderResult.givePresent()).thenReturn(Present.NOTHING);
 
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<증정 메뉴> 없음");
     }
@@ -83,7 +83,7 @@ public class OutputViewTest {
     void 총혜택금액_테스트() {
         Mockito.when(orderResult.allOfBenefitAmount()).thenReturn(23000);
 
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<총 혜택 금액> -23,000원");
     }
@@ -92,21 +92,21 @@ public class OutputViewTest {
     void 총혜택금액_0원_테스트() {
         Mockito.when(orderResult.allOfBenefitAmount()).thenReturn(0);
 
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<총 혜택 금액> 0원");
     }
 
     @Test
     void 할인후_예상_결제금액_테스트() {
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<할인 후 예상 결제 금액> 500,000원");
     }
 
     @Test
     void 이벤트배지_테스트() {
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<12월 이벤트 배지> 별");
     }
@@ -115,7 +115,7 @@ public class OutputViewTest {
     void 이벤트배지_없음_테스트() {
         Mockito.when(orderResult.giveEventBadge()).thenReturn(EventBadge.NOTHING);
 
-        outputView.print();
+        outputView.printAll();
 
         assertThat(captor.toString()).containsIgnoringWhitespaces("<12월 이벤트 배지> 없음");
     }

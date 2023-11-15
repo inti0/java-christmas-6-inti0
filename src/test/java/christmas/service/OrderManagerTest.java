@@ -20,7 +20,7 @@ public class OrderManagerTest {
                 "해산물파스타-1", "크리스마스파스타-1", "초코케이크-1", "아이스크림-1", "제로콜라-1", "레드와인-1", "샴페인-1");
         OrderManager orderManager = new OrderManager(allMenu);
 
-        OrderReceiver orderReceiver = orderManager.handleOrder();
+        OrderReceiver orderReceiver = orderManager.processOrder();
         Map<Food, Integer> orders = orderReceiver.getOrders();
 
         assertThat(orders.size()).isEqualTo(12);
@@ -33,7 +33,7 @@ public class OrderManagerTest {
 
         OrderManager orderManager = new OrderManager(menuAndAmount);
 
-        assertThatThrownBy(() -> orderManager.handleOrder())
+        assertThatThrownBy(() -> orderManager.processOrder())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,7 +45,7 @@ public class OrderManagerTest {
 
         OrderManager orderManager = new OrderManager(menuAndAmount);
 
-        assertThatThrownBy(() -> orderManager.handleOrder())
+        assertThatThrownBy(() -> orderManager.processOrder())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

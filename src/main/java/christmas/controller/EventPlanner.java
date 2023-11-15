@@ -37,17 +37,17 @@ public class EventPlanner {
         inputView.orderGreetMessage();
         while (true) {
             try {
-                return processOrder();
+                return retrieveOrder();
             } catch (IllegalArgumentException exception) {
                 inputView.OrderErrorMessage();
             }
         }
     }
 
-    private Map<Food, Integer> processOrder() {
+    private Map<Food, Integer> retrieveOrder() {
         List<String> strings = inputView.parseInputToList();
         OrderManager orderManger = new OrderManager(strings);
-        OrderReceiver orderReceiver = orderManger.handleOrder();
+        OrderReceiver orderReceiver = orderManger.processOrder();
         Map<Food, Integer> orders = orderReceiver.getOrders();
 
         return orders;
@@ -62,6 +62,6 @@ public class EventPlanner {
 
     private void printBill(OrderResult orderResult) {
         OutputView outputView = new OutputView(orderResult);
-        outputView.print();
+        outputView.printAll();
     }
 }

@@ -15,7 +15,7 @@ public class OrderManager {
         this.menuAndAmount = menuAndAmount;
     }
 
-    public OrderReceiver handleOrder() {
+    public OrderReceiver processOrder() {
         OrderReceiver orderReceiver = new OrderReceiver(new EnumMap<Food, Integer>(Food.class));
         receiveOrder(orderReceiver);
         checkOnlyDrink(orderReceiver);

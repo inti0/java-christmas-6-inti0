@@ -42,7 +42,7 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        outputView.print();
+        outputView.printAll();
 
         assertThat(discount).isEqualTo(0);
         assertThat(present).isEqualTo(Present.NOTHING);
@@ -55,7 +55,7 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        outputView.print();
+        outputView.printAll();
 
         assertThat(discount).isEqualTo(2023 * 3);
         assertThat(present).isEqualTo(Present.NOTHING);
@@ -68,7 +68,7 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        outputView.print();
+        outputView.printAll();
 
         assertThat(discount).isEqualTo(0);
         assertThat(present).isEqualTo(Present.CHAMPAGNE);
@@ -82,7 +82,7 @@ public class OutputViewBenefitListTest {
 
         int discount = orderResult.allOfDiscount();
         Present present = orderResult.givePresent();
-        outputView.print();
+        outputView.printAll();
 
         assertThat(discount).isEqualTo(2023 * 3);
         assertThat(present).isEqualTo(Present.CHAMPAGNE);

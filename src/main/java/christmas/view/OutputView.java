@@ -23,7 +23,7 @@ public class OutputView {
         this.result = result;
     }
 
-    public void print() {
+    public void printAll() {
         System.out.println("<주문 메뉴>");
         System.out.println(toStringOrders());
         System.out.println("<할인 전 총주문 금액>");
