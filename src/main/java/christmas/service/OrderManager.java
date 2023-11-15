@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 public class OrderManager {
+
     private static final String ORDER_DELIMITER = "-";
     private static final int UNIT_ORDER_SIZE = 2;
     private final List<String> menuAndAmount;

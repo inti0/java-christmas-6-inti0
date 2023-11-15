@@ -56,4 +56,13 @@ public class InputViewTest {
         assertThat(strings.get(0)).isEqualTo("양송이수프-1");
         assertThat(strings.get(1)).isEqualTo("토마토파스타-1");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {""})
+    void 주문_예외_테스트(String input) {
+        setIn(input);
+
+        assertThatThrownBy(() -> inputView.parseInputToList())
+                .isInstanceOf(NoSuchElementException.class);
+    }
 }

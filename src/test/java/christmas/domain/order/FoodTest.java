@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class FoodTest {
+
     OrderReceiver order = new OrderReceiver(new EnumMap<>(Food.class));
 
     @Test

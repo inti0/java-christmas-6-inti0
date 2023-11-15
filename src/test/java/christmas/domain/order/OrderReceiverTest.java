@@ -29,9 +29,9 @@ class OrderReceiverTest {
         assertThat(size).isEqualTo(2);
     }
 
-    @DisplayName("주문 중 주문 수량이 잘못 되면 오류가 발생한다.")
-    @ValueSource(ints = {0,21})
     @ParameterizedTest
+    @ValueSource(ints = {0,21})
+    @DisplayName("주문 중 주문 수량이 잘못 되면 오류가 발생한다.")
     void 주문량_최소_테스트(int amount) {
         assertThatThrownBy(() ->
                 receiver.orderFood(Food.T_BONE_STEAK, amount))

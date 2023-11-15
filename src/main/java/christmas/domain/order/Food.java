@@ -3,6 +3,7 @@ package christmas.domain.order;
 import java.util.Arrays;
 
 public enum Food {
+
     BUTTON_MUSHROOM_SOUP("양송이수프", 6_000, FoodType.APPETIZER),
     TAPAS("타파스", 5_500, FoodType.APPETIZER),
     CAESAR_SALAD("시저샐러드", 8_000, FoodType.APPETIZER),
@@ -15,6 +16,7 @@ public enum Food {
     ZERO_COLA("제로콜라", 3_000, FoodType.DRINK),
     RED_WINE("레드와인", 60_000, FoodType.DRINK),
     CHAMPAGNE("샴페인", 25_000, FoodType.DRINK);
+
     private String name;
     private int price;
     private FoodType foodType;

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public record OrderResult(Map<Food, Integer> orders, List<DiscountPolicy> discountPolicies) {
+
     private static final int NO_DISCOUNT = 0;
     private static final int DISCOUNT_MIN_RANGE = 10000;
 

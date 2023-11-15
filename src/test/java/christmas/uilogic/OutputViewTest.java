@@ -23,12 +23,10 @@ public class OutputViewTest {
     );
     OrderResult orderResult = Mockito.mock(OrderResult.class);
     OutputView outputView = new OutputView(orderResult);
-    PrintStream standardOut;
     OutputStream captor;
 
     @BeforeEach
     protected final void init() {
-        standardOut = System.out;
         captor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(captor));
     }

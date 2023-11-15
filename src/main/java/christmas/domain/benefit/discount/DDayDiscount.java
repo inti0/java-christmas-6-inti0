@@ -4,11 +4,12 @@ import christmas.AppConstants;
 import java.time.LocalDate;
 
 public class DDayDiscount implements DiscountPolicy {
-    private static final int DISCOUNT_INCREASE_PER_DAY = 100;
-    private static final int DISCOUNT_PRICE_DEFAULT = 900;
+
+    private static final int D_DAY_DISCOUNT_INCREASE_PER_DAY = 100;
+    private static final int D_DAY_DISCOUNT_DEFAULT = 900;
     private final LocalDate localDate;
 
-    public DDayDiscount(LocalDate localDate) {
+    protected DDayDiscount(LocalDate localDate) {
         this.localDate = localDate;
     }
 
@@ -18,7 +19,7 @@ public class DDayDiscount implements DiscountPolicy {
         if (dayOfMonth > AppConstants.CHRISTMAS_DATE) {
             return AppConstants.NO_DISCOUNT;
         }
-        return dayOfMonth * DISCOUNT_INCREASE_PER_DAY + DISCOUNT_PRICE_DEFAULT;
+        return dayOfMonth * D_DAY_DISCOUNT_INCREASE_PER_DAY + D_DAY_DISCOUNT_DEFAULT;
     }
 
     @Override

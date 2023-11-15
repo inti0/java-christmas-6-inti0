@@ -3,6 +3,7 @@ package christmas.domain.benefit.discount;
 import christmas.domain.order.Food;
 import christmas.domain.order.OrderReceiver;
 import java.time.LocalDate;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class DiscountFactoryTest {
 
     @BeforeEach
     void 생성자주입() {
-        orders = new HashMap<>();
+        orders = new EnumMap<Food, Integer>(Food.class);
         receiver = new OrderReceiver(orders);
         localDate = LocalDate.of(2023, 12, 10);      // 일요일
         discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);

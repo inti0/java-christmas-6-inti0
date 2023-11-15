@@ -9,6 +9,7 @@ import christmas.model.OrderResult;
 import java.util.stream.Collectors;
 
 public class OutputView {
+
     private static final int NEGATIVE_SIGN = -1;
     private static final String NEXT_LINE = "\n";
     private static final String NOTHING_FORMAT = "없음";

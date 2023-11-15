@@ -3,7 +3,8 @@ package christmas.domain.benefit;
 public enum Present {
 
     CHAMPAGNE(120_000, 25_000, "샴페인", 1),
-    NOTHING(0, 0, "없음", 0);
+    NOTHING(-1, -1, "없음", -1);
+
     private final int condition;
     private final int price;
     private final String item;

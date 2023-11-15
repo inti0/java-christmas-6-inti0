@@ -1,9 +1,11 @@
 package christmas.domain.order;
 
 import christmas.AppConstants;
+import java.util.Collections;
 import java.util.Map;
 
 public class OrderReceiver {
+
     private static final int ORDER_AMOUNT_UNIT_MIN = 1;
     private Map<Food, Integer> orders;
     public OrderReceiver(Map<Food, Integer> orders) {
@@ -24,7 +26,7 @@ public class OrderReceiver {
 
     private void validate(int amount) {
         validateUnit(amount);
-        validateTotalOrder(amount);
+        validateOrderSum(amount);
     }
 
     private void validateUnit(int amount) {
@@ -33,7 +35,7 @@ public class OrderReceiver {
         }
     }
 
-    private void validateTotalOrder(int amount) {
+    private void validateOrderSum(int amount) {
         int total = orders.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
@@ -49,6 +51,6 @@ public class OrderReceiver {
     }
 
     public Map<Food, Integer> getOrders() {
-        return orders;
+        return Collections.unmodifiableMap(orders);
     }
 }

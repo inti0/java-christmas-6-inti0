@@ -23,13 +23,10 @@ public class OutputViewBenefitListTest {
     DiscountPolicyFactory discountPolicyFactory = new DiscountPolicyFactory(localDate, orders);
     OrderResult orderResult = new OrderResult(orders, discountPolicyFactory.createDiscountPolicies());
     OutputView outputView = new OutputView(orderResult);
-
-    PrintStream standardOut;
     OutputStream captor;
 
     @BeforeEach
     protected final void init() {
-        standardOut = System.out;
         captor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(captor));
     }

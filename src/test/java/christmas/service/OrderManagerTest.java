@@ -27,7 +27,7 @@ public class OrderManagerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"양송이수프-일", "양송이수프", "양송이수프-i", "제로콜라,아이스크림", "양송이스프-1", ""})
+    @ValueSource(strings = {"양송이수프-일", "양송이수프", "양송이수프-i", "양송이스프-1", "-"," -", "- "})
     void 주문_실패_테스트(String input) {
         List<String> menuAndAmount = List.of(input);
 

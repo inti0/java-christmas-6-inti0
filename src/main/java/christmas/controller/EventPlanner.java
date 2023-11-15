@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EventPlanner {
+
     private final InputView inputView;
 
     public EventPlanner(InputView inputView) {

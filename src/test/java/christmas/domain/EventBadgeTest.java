@@ -10,9 +10,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class EventBadgeTest {
 
-    @DisplayName("이벤트 뱃지는 5000, 10000, 20000에서 바뀐다.")
-    @MethodSource("eventBadge")
     @ParameterizedTest
+    @MethodSource("eventBadge")
+    @DisplayName("이벤트 뱃지는 5000, 10000, 20000에서 바뀐다.")
     void selectEventBadge3(int benefitAmount, EventBadge eventBadge) {
         EventBadge selectEventBadge = EventBadge.selectEventBadge(benefitAmount);
 
